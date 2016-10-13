@@ -1,0 +1,62 @@
+: audio_play_sync
+	vf := 2
+: audio_play_sync_vf
+	audio
+	buzzer := vf
+	delay := vf
+	loop
+		vf := delay
+		if vf != 0 then
+	again
+	return
+
+# va,vb == audio buffers count to play
+: audio_play_stream
+	v2 := 16
+	v3 := 1
+	v4 := 2
+
+	v5 := va
+	v5 |= vb
+	if v5 == 0 then return
+
+	v0 := 1
+	loop
+		if v0 key then return
+		audio
+		buzzer := v4
+		delay := v4
+
+		i += v2
+
+		v5 := va
+		v5 |= vb
+		if v5 == 0 then return
+		va -= v3
+		vf ^= v3 #0 on borrow
+		vb -= vf
+
+		loop
+			v6 := delay
+			if v6 != 0 then
+		again
+	again
+	return
+
+: audio_play_dtmf
+	v1 := 16
+	v2 := 1
+	i := long audio_phone_tones
+
+: audio_play_dtmf_inc
+	if va == 0 then jump audio_play_dtmf_play
+	va -= v2
+	i += v1
+	if vf != 0 then jump audio_play_dtmf_inc
+
+: audio_play_dtmf_play
+	va := vb
+	audio
+	buzzer := va
+	sleep
+	return

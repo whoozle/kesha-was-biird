@@ -1,0 +1,3 @@
+: audio_splash_size
+	0x00 0x00
+: audio_splash

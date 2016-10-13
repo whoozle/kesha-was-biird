@@ -1,0 +1,70 @@
+: text_get_offset
+	i := long data_text_index
+	i += vc
+	i += vc
+	load v2 - v3
+
+	v0 := data_text_hi
+	v1 := data_text_lo
+
+	v1 += v2
+	v0 += vf
+	v0 += v3
+	return
+
+: draw_text
+	text_get_offset
+
+	i := draw_text_instruction_addr
+	save v1
+	vd := 1
+
+: draw_text_loop
+	0xf0 0x00 #i := long XXXX
+: draw_text_instruction_addr
+	0 0
+
+	load vc - vc
+	if vc == 0 then return
+
+	_draw_font_char
+	va += v0
+
+	i := draw_text_instruction_addr
+	load v1
+	v1 += vd #+1
+	v0 += vf
+	i := draw_text_instruction_addr
+	save v1
+
+	i := long audio_text_beep
+	audio_play_sync
+
+	jump draw_text_loop
+
+: draw_text_ns
+	text_get_offset
+
+	i := draw_text_ns_instruction_addr
+	save v1
+	vd := 1
+
+: draw_text_ns_loop
+	0xf0 0x00 #i := long XXXX
+: draw_text_ns_instruction_addr
+	0 0
+
+	load vc - vc
+	if vc == 0 then return
+
+	_draw_font_char
+	va += v0
+
+	i := draw_text_ns_instruction_addr
+	load v1
+	v1 += vd #+1
+	v0 += vf
+	i := draw_text_ns_instruction_addr
+	save v1
+
+	jump draw_text_ns_loop

@@ -1,0 +1,59 @@
+: draw_hline_8
+	loop
+		sprite va vb 8
+		va += 8
+		vf := 1
+		vc -= vf
+		if vc != 0 then
+	again
+	return
+
+: draw_vline_8
+	loop
+		sprite va vb 8
+		vb += 8
+		vf := 1
+		vc -= vf
+		if vc != 0 then
+	again
+	return
+
+: draw_tile_32x32
+	ve := 64
+	sprite va vb 0
+	va += 16
+	i += ve
+	sprite va vb 0
+	va += -16
+	vb += 16
+	i += ve
+	sprite va vb 0
+	va += 16
+	i += ve
+	sprite va vb 0
+	return
+
+: draw_fullscreen_tile
+	v1 := 0
+
+	v2 := 0x7f
+	v3 := 0x3f
+	v4 := 64
+
+	clear
+
+	loop
+		v0 := 0
+		loop
+			sprite v0 v1 0
+			v0 += 16
+			i += v4
+			v0 &= v2
+			if v0 != 0 then
+		again
+		v1 += 16
+		v1 &= v3
+		if v1 != 0 then
+	again
+
+	return

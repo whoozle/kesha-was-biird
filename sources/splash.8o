@@ -1,0 +1,34 @@
+: splash_draw
+	clear
+
+	i := long tile_splash_data
+	draw_fullscreen_tile
+
+	va := 24
+	vb := 54
+	vc := text_splash_title
+	draw_text
+
+	loop
+		i := long audio_splash_size
+		load va - vb
+		i := long audio_splash
+		audio_play_stream
+
+		v0 := 1
+		if v0 -key then
+	again
+
+	clear
+
+	va := 120
+	sleep
+
+	va := 31
+	vb := 30
+	vc := text_title
+
+	draw_text
+
+	va := 120
+	jump sleep
