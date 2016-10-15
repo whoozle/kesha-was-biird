@@ -1,4 +1,6 @@
 : intro
+	clear
+
 	va := 10
 	vb := 10
 	vc := text_title_1
@@ -6,15 +8,14 @@
 
 	v9 := va
 
-	vc := 42 #'I'
-	_draw_font_char
+	va := 60
+	sleep
 
 	vd := 5
 
-	loop
-		i := long audio_sweep
-		audio_play_sync
+	va := v9
 
+	loop
 		ve := va
 		va := 30
 		sleep
@@ -22,6 +23,10 @@
 
 		vc := 42 #'I'
 		_draw_font_char
+
+		i := long audio_sweep
+		audio_play_sync
+
 		vd += -1
 	if vd > 0 then again
 
@@ -30,6 +35,20 @@
 	vc := text_title_2
 	draw_text
 
+	va := 120
+	sleep
+
+	clear
+
+	va := 10
+	vb := 30
+	vc := text_title_3
+	draw_text
+
+	va := 120
+	sleep
+
+	clear
 	loop
 	again
 	return
