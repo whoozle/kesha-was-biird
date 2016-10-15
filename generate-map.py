@@ -20,6 +20,7 @@ vault = Location('VAULT')
 
 vault_def = State("Vault was warm and cozy,\nalmost nothing reminiscent\nrecent fishapocalipse.")
 vault_def.add_action(Action('Go outside', go(lab_ruins)))
+vault_def.add_action(Action('Stay inside', rest()))
 
 vault.add_state('default', vault_def)
 

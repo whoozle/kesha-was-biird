@@ -28,15 +28,19 @@ class Action(object):
 		self.title = title
 		self.action = action
 
-class ActionImpl(object):
+class ActionFactory(object):
+	class Impl(object):
+		def __init__(self, name, args, kw):
+			self.name, self.args, self.kw = name, args, kw
+
 	def __init__(self, action):
-		self.action = action
+		self.name = action
 
 	def __call__(self, *args, **kw):
-		self.args = args
-		self.kw = kw
+		return ActionFactory.Impl(self.name, args, kw)
 
-go = ActionImpl('go')
+go = ActionFactory('go')
+rest = ActionFactory('rest')
 
 class Generator(object):
 	def __init__(self):
@@ -54,10 +58,8 @@ class Generator(object):
 	def escape(self, text):
 		return re.sub(r'[^\w]', '_', text).lower()
 
-	def text(self, prefix, text):
-		label = 'map_%s_draw_title' %prefix
+	def text(self, label, text):
 		self.__texts[label] = text
-		return label
 
 	def visit(self, loc):
 		self.__locations.append(loc)
@@ -67,20 +69,32 @@ class Generator(object):
 
 	def generate_location(self, loc):
 		src = self.__source
-		prefix = self.escape(loc.title)
-		src.append(':map_%s_draw_title' %prefix)
+		loc_prefix = 'map_' + self.escape(loc.title)
+		src.append(':%s_draw_title' %loc_prefix)
 		src.append('va := 10')
 		src.append('vb := 0')
-		src.append('vc := %s' %self.text(prefix, loc.title))
+
+		title = '%s_title' %loc_prefix
+		self.text(title, loc.title)
+
+		src.append('vc := %s' %title)
 		src.append('jump draw_text')
+
 		for name, state in sorted(loc.states.iteritems()):
 			label = self.state_label(loc, name)
 			self.__states.append(label)
 			src.append('')
 			src.append(':%s_draw' %label)
-			src.append('map_%s_draw_title' %prefix)
+			src.append('%s_draw_title' %loc_prefix)
+			state_prefix = '%s_%s' %(loc_prefix, self.escape(name))
+			for idx, text in enumerate(state.texts):
+				src.append('va := map_state_x')
+				src.append('vb := map_state_y%d' %(1 + idx))
+				tp = '%s_%d' %(state_prefix, idx)
+				self.text(tp, text)
+				src.append('vc := text_%s' %tp)
 			for action in state.actions:
-				print action
+				print action.action, action.title
 			src.append('return')
 
 		src.append('')
