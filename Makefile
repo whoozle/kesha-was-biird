@@ -1,5 +1,7 @@
 PREFIX := .compiled
 
+.PHONY = all clean xclip pbcopy
+
 all: game.hex
 
 #$(PREFIX)/heads.8o: Makefile assets/heads/* generate-texture.py
