@@ -2,8 +2,7 @@
 	loop
 		sprite va vb 8
 		va += 8
-		vf := 1
-		vc -= vf
+		vc += -1
 		if vc != 0 then
 	again
 	return
@@ -12,8 +11,7 @@
 	loop
 		sprite va vb 8
 		vb += 8
-		vf := 1
-		vc -= vf
+		vc += -1
 		if vc != 0 then
 	again
 	return
