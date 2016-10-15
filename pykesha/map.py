@@ -76,7 +76,12 @@ class Generator(object):
 		for name, state in sorted(loc.states.iteritems()):
 			label = self.state_label(loc, name)
 			self.__states.append(label)
+			src.append('')
 			src.append(':%s_draw' %label)
+			src.append('map_%s_draw_title' %prefix)
+			for action in state.actions:
+				print action
+			src.append('return')
 
 		src.append('')
 
