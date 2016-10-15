@@ -326,4 +326,4 @@ with open(os.path.join(prefix, 'dialogs.8o'), 'w') as f:
 	f.write(_source)
 
 with open(os.path.join(prefix, 'dialogs.json'), 'w') as f:
-	json.dump(_texts, f)
+	json.dump(get_texts(), f)

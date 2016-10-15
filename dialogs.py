@@ -106,3 +106,6 @@ def get_source():
 
 def get_heads_source():
 	return _heads_source
+
+def get_texts():
+	return _texts
