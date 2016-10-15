@@ -62,6 +62,9 @@ class Generator(object):
 	def visit(self, loc):
 		self.__locations.append(loc)
 
+	def state_label(self, loc, state):
+		return 'map_state_%s_%s' %(self.escape(loc.title), self.escape(state))
+
 	def generate_location(self, loc):
 		src = self.__source
 		prefix = self.escape(loc.title)
@@ -70,9 +73,13 @@ class Generator(object):
 		src.append('vb := 0')
 		src.append('vc := %s' %self.text(prefix, loc.title))
 		src.append('jump draw_text')
+		for name, state in sorted(loc.states.iteritems()):
+			label = self.state_label(loc, name)
+			src.append(':const %s %d' %(label, len(self.__states)))
+			self.__states.append(label)
+			src.append(':%s_draw' %label)
+
 		src.append('')
-		for name, state in loc.states.iteritems():
-			print name, state
 
 	def generate(self, prefix):
 		src = self.__source
@@ -87,8 +94,10 @@ class Generator(object):
 			self.generate_location(loc)
 
 		src.append(':map_dispatch_table')
-		src += self.__states
+		for state in self.__states:
+			src.append("%s_draw" %state)
 		src.append('')
+
 		with open(os.path.join(prefix, 'map.json'), 'wt') as text:
 			json.dump(self.__texts, text)
 
