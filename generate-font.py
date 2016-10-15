@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 def generate(name, file, addr, font_height = 5, space_width = 3):
 	source = ":org 0x%04x\n" %addr
