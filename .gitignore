@@ -5,3 +5,4 @@ png.pyc
 game.8o
 .compiled/
 assets/sources
+*.py[o|c]
