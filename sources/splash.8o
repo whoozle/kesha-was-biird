@@ -24,11 +24,11 @@
 	va := 120
 	sleep
 
-	va := 31
-	vb := 30
-	vc := text_title
+#	va := 31
+#	vb := 30
+#	vc := text_title
 
-	draw_text
+#	draw_text
 
 	va := 120
 	jump sleep

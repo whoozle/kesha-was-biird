@@ -72,6 +72,7 @@ game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $
 		cat sources/main.8o > $@
 		cat $(PREFIX)/texts.8o >> $@
 		cat $(PREFIX)/font.8o >> $@
+		cat sources/intro.8o >> $@
 #		cat $(PREFIX)/dialogs.8o >> $@
 		cat sources/utils.8o >> $@
 		cat sources/text.8o >> $@

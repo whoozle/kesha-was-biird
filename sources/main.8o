@@ -2,10 +2,11 @@
 	hires
 	plane 3
 
-#	jump main_skip
+	jump main_skip
 
 	splash_draw
 
 : main_skip
+	intro
 	loop
 	again
