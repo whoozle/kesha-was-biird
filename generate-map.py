@@ -1,6 +1,11 @@
 #!/usr/bin/env python2
 
 from pykesha.map import *
+import argparse
+
+parser = argparse.ArgumentParser(description='generate maps')
+parser.add_argument('prefix', help='target directory')
+args = parser.parse_args()
 
 lab_ruins = Location('DEAD LAB')
 lab_ruins_def = State("Black mouth of dead lab\nlays before you")
@@ -17,3 +22,9 @@ vault_def = State("Vault was warm and cozy,\nalmost nothing reminiscent\nrecent 
 vault_def.add_action(Action('Go outside', go(lab_ruins)))
 
 vault.add_state('default', vault_def)
+
+generator = Generator()
+generator.visit(vault)
+generator.visit(lab_ruins)
+
+generator.generate(args.prefix)
