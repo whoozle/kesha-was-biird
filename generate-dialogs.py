@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 import argparse
-from dialogs import *
+from pykesha.dialogs import *
 
 parser = argparse.ArgumentParser(description='generate dialogs')
 parser.add_argument('prefix', help='target directory')
