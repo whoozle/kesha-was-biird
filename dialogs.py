@@ -102,7 +102,7 @@ def clear():
 	call('panel_draw')
 
 def get_source():
-	return _sources
+	return _source
 
 def get_heads_source():
 	return _heads_source
