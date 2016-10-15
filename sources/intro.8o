@@ -1,3 +1,52 @@
+: reboot_pattern_1
+0x80 0x80 0x80 0x80 0x80 0x80 0x80 0x80
+0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff
+
+: reboot_pattern_2
+0x80 0x00
+
+: zx_reboot
+	clear
+	v0 := 0
+	v1 := 0
+	i := reboot_pattern_1
+	loop
+		loop
+			sprite v0 v1 8
+			v0 += 8
+			if v0 < 128 then
+		again
+		v1 += 8
+		v0 := 0
+		if v1 < 64 then
+	again
+
+	i := reboot_pattern_2
+	v2 := 0
+	loop
+		v0 := 0
+		v1 := v2
+		loop
+			loop
+				sprite v0 v1 1
+				v0 += 8
+				if v0 < 128 then
+			again
+			v1 += 8
+			v0 := 0
+			if v1 < 64 then
+		again
+		v2 += 1
+
+		va := 2
+		sleep
+
+		if v2 < 8 then
+	again
+
+	clear
+	return
+
 : intro
 	clear
 
@@ -48,7 +97,8 @@
 	va := 120
 	sleep
 
-	clear
+	zx_reboot
+
 	loop
 	again
 	return
