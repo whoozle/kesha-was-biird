@@ -44,6 +44,7 @@ class Generator(object):
 		self.__locations = []
 		self.__counters = {}
 		self.__source = []
+		self.__states = []
 
 	def next(self, name):
 		value = self.__counters.get(name, 1)
@@ -53,8 +54,8 @@ class Generator(object):
 	def escape(self, text):
 		return re.sub(r'[^\w]', '_', text).lower()
 
-	def text(self, text):
-		label = 'map_%d' %self.next('map')
+	def text(self, prefix, text):
+		label = 'map_%s_draw_title' %prefix
 		self.__texts[label] = text
 		return label
 
@@ -62,7 +63,16 @@ class Generator(object):
 		self.__locations.append(loc)
 
 	def generate_location(self, loc):
-		pass
+		src = self.__source
+		prefix = self.escape(loc.title)
+		src.append(':map_%s_draw_title' %prefix)
+		src.append('va := 10')
+		src.append('vb := 0')
+		src.append('vc := %s' %self.text(prefix, loc.title))
+		src.append('jump draw_text')
+		src.append('')
+		for name, state in loc.states.iteritems():
+			print name, state
 
 	def generate(self, prefix):
 		src = self.__source
@@ -71,11 +81,13 @@ class Generator(object):
 		src.append('load v0')
 		src.append('i := map_dispatch_table')
 		src.append('jump0 v0')
-		src.append(':map_dispatch_table')
+		src.append('')
 
 		for loc in self.__locations:
 			self.generate_location(loc)
 
+		src.append(':map_dispatch_table')
+		src += self.__states
 		src.append('')
 		with open(os.path.join(prefix, 'map.json'), 'wt') as text:
 			json.dump(self.__texts, text)
