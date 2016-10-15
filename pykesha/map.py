@@ -75,14 +75,20 @@ class Generator(object):
 		src.append('jump draw_text')
 		for name, state in sorted(loc.states.iteritems()):
 			label = self.state_label(loc, name)
-			src.append(':const %s %d' %(label, len(self.__states)))
 			self.__states.append(label)
 			src.append(':%s_draw' %label)
 
 		src.append('')
 
 	def generate(self, prefix):
-		src = self.__source
+		src = []
+
+		for idx in xrange(len(self.__states)):
+			state = self.__states[idx]
+			src.append(':const %s %d' %(state, idx))
+
+		src += self.__source
+
 		src.append(':map_dispatch')
 		src.append('i := map_state')
 		src.append('load v0')
@@ -90,16 +96,19 @@ class Generator(object):
 		src.append('jump0 v0')
 		src.append('')
 
+		self.__source = []
 		for loc in self.__locations:
 			self.generate_location(loc)
 
 		src.append(':map_dispatch_table')
 		for state in self.__states:
-			src.append("%s_draw" %state)
+			src.append("jump %s_draw" %state)
 		src.append('')
+		src += self.__source
+
 
 		with open(os.path.join(prefix, 'map.json'), 'wt') as text:
 			json.dump(self.__texts, text)
 
 		with open(os.path.join(prefix, 'map.8o'), 'wt') as text:
-			text.write('\n'.join(self.__source))
+			text.write('\n'.join(src))
