@@ -88,13 +88,20 @@ class Generator(object):
 			src.append('%s_draw_title' %loc_prefix)
 			state_prefix = '%s_%s' %(loc_prefix, self.escape(name))
 			for idx, text in enumerate(state.texts):
-				src.append('va := map_state_x')
+				src.append('va := map_state_x') #use load va-vc for register initialization?
 				src.append('vb := map_state_y%d' %(1 + idx))
 				tp = '%s_%d' %(state_prefix, idx)
 				self.text(tp, text)
 				src.append('vc := text_%s' %tp)
-			for action in state.actions:
-				print action.action, action.title
+				src.append('draw_text')
+
+			for idx, action in enumerate(state.actions):
+				label = 'map_action_%s' %self.escape(action.title)
+				src.append('va := map_action_x')
+				src.append('vb := map_action_y%d' %(1 + idx))
+				src.append('vc := text_%s' %label)
+				src.append('draw_text') #draw_menu_entry idx
+				self.text(label, action.title)
 			src.append('return')
 
 		src.append('')
