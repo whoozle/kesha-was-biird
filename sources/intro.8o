@@ -1,0 +1,35 @@
+: intro
+	va := 10
+	vb := 10
+	vc := text_title_1
+	draw_text
+
+	v9 := va
+
+	vc := 42 #'I'
+	_draw_font_char
+
+	vd := 5
+
+	loop
+		i := long audio_sweep
+		audio_play_sync
+
+		ve := va
+		va := 30
+		sleep
+		va := ve
+
+		vc := 42 #'I'
+		_draw_font_char
+		vd += -1
+	if vd > 0 then again
+
+	va := v9
+	vb := 13
+	vc := text_title_2
+	draw_text
+
+	loop
+	again
+	return
