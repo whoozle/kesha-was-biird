@@ -48,14 +48,17 @@ $(PREFIX)/tiles.8o: Makefile ./generate-texture.py assets/tiles/* #assets/*.png
 #		./generate-texture.py assets/frame.png frame 2 16 >> $@
 #		./generate-texture.py assets/room.png room 2 16 >> $@
 
-$(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py
+$(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py pykesha/dialogs.py
 		./generate-dialogs.py $(PREFIX)
 
 $(PREFIX)/font.8o $(PREFIX)/font-data.8o: Makefile generate-font.py assets/font/5.font
 		./generate-font.py assets/font/5.font font 1000 $(PREFIX)
 
-$(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json generate-text.py
-		./generate-text.py $(PREFIX) 1500 assets/en.json
+$(PREFIX)/map.8o $(PREFIX)/map.json: Makefile generate-map.py pykesha/map.py
+		./generate-map.py $(PREFIX)
+
+$(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json $(PREFIX)/map.json generate-text.py
+		./generate-text.py $(PREFIX) 1500 assets/en.json $(PREFIX)/map.json
 
 ifeq ($(strip $(AUDIO)),)
 $(PREFIX)/audio.8o: Makefile sources/splash_audio_null.8o
@@ -68,10 +71,13 @@ endif
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
 		./generate-string.py --right-align=60000 "Brought to you by Gazay & Whoozle. FROM LOVE WITH COW ©7524" > $@
 
-game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o $(PREFIX)/dtmf.8o $(PREFIX)/audio.8o $(PREFIX)/signature.8o $(PREFIX)/tiles.8o assets/* assets/*/* sources/*.8o generate-texture.py
+game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o $(PREFIX)/dtmf.8o $(PREFIX)/audio.8o $(PREFIX)/signature.8o $(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/map.8o assets/* assets/*/* sources/*.8o generate-texture.py
 		cat sources/main.8o > $@
 		cat $(PREFIX)/texts.8o >> $@
 		cat $(PREFIX)/font.8o >> $@
+		cat sources/map_runtime.8o >> $@
+		cat $(PREFIX)/map.8o >> $@
+		cat sources/flags.8o >> $@
 		cat sources/intro.8o >> $@
 #		cat $(PREFIX)/dialogs.8o >> $@
 		cat sources/utils.8o >> $@

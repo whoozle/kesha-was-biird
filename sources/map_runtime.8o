@@ -1,0 +1,18 @@
+:const map_state_x 20
+:const map_state_y1 10
+:const map_state_y2 16
+:const map_state_y3 22
+:const map_state_y4 28
+
+:const map_action_x 10
+:const map_action_y1 34
+:const map_action_y2 40
+:const map_action_y3 46
+:const map_action_y4 52
+
+: draw_action_1
+: draw_action_2
+: draw_action_3
+: draw_action_4
+	return
+
