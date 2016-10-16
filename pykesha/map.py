@@ -111,6 +111,7 @@ class Generator(object):
 		src.append(': map_dispatch')
 		src.append('i := map_state')
 		src.append('load v0')
+		src.append('v0 += v0')
 		src.append('jump0 map_dispatch_table')
 		src.append('')
 

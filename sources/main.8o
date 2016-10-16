@@ -5,8 +5,9 @@
 	jump main_skip
 
 	splash_draw
+	intro
 
 : main_skip
-	intro
+	map_dispatch
 	loop
 	again
