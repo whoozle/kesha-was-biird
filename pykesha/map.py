@@ -70,8 +70,8 @@ class Generator(object):
 		src = []
 		loc_prefix = 'map_' + self.escape(loc.title)
 		src.append(': %s_draw_title' %loc_prefix)
-		src.append('va := 10')
-		src.append('vb := 0')
+		src.append('va := map_title_x')
+		src.append('vb := map_title_y')
 
 		title = '%s_title' %loc_prefix
 		self.text(title, loc.title)
