@@ -19,7 +19,16 @@ return value in v0, temp in vf
 
 ##Colors
 
-<NEW COLORS>
+### New colors I used for slight warm gray (fix me)
+
+BG 444433
+F1 FFFFFF
+F2 777766
+BL 805224
+
+BZ1 222211
+BZ2 212110
+
 
 #Credits
 
