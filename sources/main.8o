@@ -10,6 +10,5 @@
 : main_skip
 	loop
 	clear
-	#map_dispatch
-	map_state_vault_default_draw
+	map_dispatch
 	again
