@@ -99,6 +99,4 @@
 
 	zx_reboot
 
-	loop
-	again
 	return
