@@ -96,10 +96,14 @@ class Generator(object):
 
 			for idx, action in enumerate(state.actions, 1):
 				label = 'map_action_%s' %self.escape(action.title)
-				src.append('va := map_action_x')
-				src.append('vc := text_%s' %label)
 				src.append('draw_action_%d' %idx)
+				src.append('vc := text_%s' %label)
+				src.append('draw_action_text_%d' %idx)
 				self.text(label, action.title)
+			if not state.actions:
+				print 'WARNING: state %s::%s does not have any actions' %(loc.title, name)
+			src.append('va := %d' %len(state.actions))
+			src.append('input_action')
 			src.append('return')
 
 		src.append('')
