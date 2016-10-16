@@ -8,6 +8,8 @@
 	intro
 
 : main_skip
-	map_dispatch
 	loop
+	clear
+	#map_dispatch
+	map_state_vault_default_draw
 	again
