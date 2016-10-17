@@ -1,8 +1,11 @@
 #!/usr/bin/env python2
 
+from __future__ import print_function
+
 import argparse
 import wave
 import struct
+import sys
 
 parser = argparse.ArgumentParser(description='Convert audio.')
 parser.add_argument('source', help='input file')
@@ -22,9 +25,6 @@ if wav.getframerate() != 4000:
 	raise Exception("invalid sample rate, sox -S %s -r 4000 -b 16 <output>" %args.source)
 
 frames = wav.readframes(n)
-
-source = ""
-source += ": audio_%s\n" %args.name
 
 wavdata = bytes()
 data = []
@@ -87,6 +87,59 @@ if size % 16:
 	for i in xrange(0, rem):
 		size += 1
 
+def compress(data):
+	print("uncompressed data: %u bytes" %len(data), file=sys.stderr)
+	pack, index = [], []
+
+	def indexOf(next):
+		first = next[0]
+		n = len(next)
+		try:
+			pos = 0
+			while True:
+				pos = pack.index(first, pos, len(pack) - n)
+				eq = True
+				for i in xrange(1, n):
+					if pack[pos + i] != next[i]:
+						eq = False
+						break
+				if eq:
+					return pos
+				else:
+					pos += 1
+
+		except ValueError:
+			return -1
+
+	for offset in xrange(0, len(data), 16):
+		next = data[offset:offset + 16]
+		src = indexOf(next)
+		if src < 0:
+			src = len(pack)
+			pack += next
+		index.append(src)
+
+	print("compressed data: %u + %u bytes" %(len(pack), len(index) * 2), file=sys.stderr)
+	return pack, index
+
+data, offsets = compress(data)
+
+source, index = '', ''
+source += ": audio_%s\n" %args.name
+
+for idx, byte in enumerate(data):
+	mask = idx & 0x0f
+	if mask == 0:
+		source += '\t'
+	source += '0x%02x' %byte
+	if mask == 15:
+		source += '\n'
+	else:
+		source += ' '
+
+for offset in offsets:
+	index += '\t0x%02x 0x%02x\n' %(offset & 0xff, (offset >> 8))
+
 for idx, byte in enumerate(data):
 	mask = idx & 0x0f
 	if mask == 0:
@@ -98,7 +151,7 @@ for idx, byte in enumerate(data):
 		source += ' '
 
 size /= 16 #loop count
-print "\n: audio_%s_size\n\t0x%02x 0x%02x\n%s"  %(args.name, size & 0xff, size >> 8, source)
+print (": audio_%s_size\n\t0x%02x 0x%02x\n: audio_%s_index\n%s\n%s"  %(args.name, size & 0xff, size >> 8, args.name, index, source))
 
 if args.output:
 	out = wave.open(args.output, 'w')
