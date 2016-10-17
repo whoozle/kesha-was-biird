@@ -88,7 +88,7 @@ game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $
 		cat $(PREFIX)/dtmf.8o >> $@
 #		cat $(PREFIX)/banners.8o >> $@
 		cat $(PREFIX)/audio.8o >> $@
-		cat $(PREFIX)/signature.8o >> $@
+#		cat $(PREFIX)/signature.8o >> $@
 
 game.bin: game.8o
 	./octo/octo game.8o $@
