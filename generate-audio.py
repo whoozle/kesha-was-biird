@@ -27,7 +27,7 @@ source = ""
 source += ": audio_%s\n" %args.name
 
 wavdata = bytes()
-data = bytes()
+data = []
 enc = args.encoding
 
 qe = 0
@@ -77,7 +77,7 @@ for i in xrange(0, n):
 
 	bit += 1
 	if bit == 8:
-		data += chr(byte)
+		data.append(byte)
 		bit = 0
 		byte = 0
 		size += 1
@@ -91,7 +91,7 @@ for idx, byte in enumerate(data):
 	mask = idx & 0x0f
 	if mask == 0:
 		source += '\t'
-	source += '0x%02x' %ord(byte)
+	source += '0x%02x' %byte
 	if mask == 15:
 		source += '\n'
 	else:
