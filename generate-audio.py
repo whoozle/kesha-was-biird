@@ -26,6 +26,7 @@ frames = wav.readframes(n)
 source = ""
 source += ": audio_%s\n" %args.name
 
+wavdata = bytes()
 data = bytes()
 enc = args.encoding
 
@@ -65,10 +66,10 @@ for i in xrange(0, n):
 	if out:
 		byte |= (0x80 >> bit)
 		y = 1
-		data += struct.pack('<h', 16384)
+		wavdata += struct.pack('<h', 16384)
 	else:
 		y = -1
-		data += struct.pack('<h', -16384)
+		wavdata += struct.pack('<h', -16384)
 
 	if enc == 'pdm':
 		qe = y - x + qe
@@ -76,29 +77,34 @@ for i in xrange(0, n):
 
 	bit += 1
 	if bit == 8:
-		source += "0x%02x " %byte
+		data += chr(byte)
 		bit = 0
 		byte = 0
 		size += 1
-		if (size % 32) == 0:
-			source += "\n"
 
 if size % 16:
 	rem = 16 - (size % 16)
 	for i in xrange(0, rem):
-		source += "0x00 "
 		size += 1
 
-print
+for idx, byte in enumerate(data):
+	mask = idx & 0x0f
+	if mask == 0:
+		source += '\t'
+	source += '0x%02x' %ord(byte)
+	if mask == 15:
+		source += '\n'
+	else:
+		source += ' '
+
 size /= 16 #loop count
-#print ":const audio_%s_size %d"  %(args.name, size)
-print ": audio_%s_size\n\t0x%02x 0x%02x\n%s"  %(args.name, size & 0xff, size >> 8, source)
+print "\n: audio_%s_size\n\t0x%02x 0x%02x\n%s"  %(args.name, size & 0xff, size >> 8, source)
 
 if args.output:
 	out = wave.open(args.output, 'w')
 	out.setnchannels(1)
 	out.setsampwidth(2)
 	out.setframerate(wav.getframerate())
-	out.setnframes(len(data) / 2)
-	out.writeframes(data)
+	out.setnframes(len(wavdata) / 2)
+	out.writeframes(wavdata)
 	out.close() #no __exit__

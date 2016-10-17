@@ -10,9 +10,9 @@
 	draw_text
 
 	loop
-		i := long audio_splash_size
+		i := long audio_music_size
 		load va - vb
-		i := long audio_splash
+		i := long audio_music
 		audio_play_stream
 
 		v0 := 1

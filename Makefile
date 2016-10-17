@@ -60,13 +60,8 @@ $(PREFIX)/map.8o $(PREFIX)/map.json: Makefile generate-map.py pykesha/map.py
 $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json $(PREFIX)/map.json generate-text.py
 		./generate-text.py $(PREFIX) 1500 assets/en.json $(PREFIX)/map.json
 
-ifeq ($(strip $(AUDIO)),)
-$(PREFIX)/audio.8o: Makefile sources/splash_audio_null.8o
-		cp -f sources/splash_audio_null.8o $@
-else
 $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
-		./generate-audio.py assets/sounds/track3.wav splash > $@
-endif
+		./generate-audio.py assets/sounds/kesha.wav -c -0.3 music > $@
 
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
 		./generate-string.py --right-align=60000 "Brought to you by Gazay & Whoozle. FROM LOVE WITH COW ©7524" > $@
