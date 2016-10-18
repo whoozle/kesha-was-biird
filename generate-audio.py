@@ -141,8 +141,8 @@ for idx, byte in enumerate(data):
 		source += ' '
 
 for offset in offsets:
-	offset += addr
-	index += '\t0x%02x 0x%02x\n' %(offset & 0xff, (offset >> 8))
+	offset += addr + (len(offsets) * 2) + 2
+	index += '\t0x%02x 0x%02x\n' %((offset >> 8), offset & 0xff)
 index += '\t0xff 0xff\n'
 
 for idx, byte in enumerate(data):
