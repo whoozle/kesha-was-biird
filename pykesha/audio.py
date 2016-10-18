@@ -1,5 +1,5 @@
 FREQ = 4000
-from math import sin, pi, floor
+from math import sin, pi, floor, sqrt
 
 def osc(t, freq):
 	return sin(t * 2 * pi * freq)
@@ -35,6 +35,7 @@ def generate(tone):
 
 def mix(a, b):
 	c = []
+	n = sqrt(2)
 	for i in xrange(0, 128):
-		c.append(a[i] + b[i])
+		c.append((a[i] + b[i]) / n)
 	return c
