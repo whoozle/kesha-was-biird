@@ -160,7 +160,7 @@ print (":org 0x%04x\n" %addr)
 print (":const audio_%s_hi 0x%02x" %(args.name, addr >> 8))
 print (":const audio_%s_lo 0x%02x\n" %(args.name, addr & 0xff))
 
-print (": audio_%s_size\n\t0x%02x 0x%02x\n: audio_%s_index\n%s\n%s"  %(args.name, size & 0xff, size >> 8, args.name, index, source))
+print (": audio_%s_index\n%s\n%s"  %(args.name, index, source))
 
 if args.output:
 	out = wave.open(args.output, 'w')
