@@ -48,7 +48,7 @@
 	return
 
 : ec4_play
-	v2 := random 0x1f
+	v2 := random 0x3f
 	if v2 > 7 then
 		jump ec4_play_exit
 
