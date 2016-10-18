@@ -59,9 +59,19 @@
 	jump draw_text
 
 : input_action
-	v0 := key
-	if v0 == 0 then jump input_action
-	if v0 > va then jump input_action
+	v0 := 1
+	if v0 key then jump input_action_ok
+	v0 := 2
+	if v0 key then jump input_action_ok
+	v0 := 3
+	if v0 key then jump input_action_ok
+	v0 := 4
+	if v0 key then jump input_action_ok
+
+	music_play
+	jump input_action
+
+: input_action_ok
 	v0 += -1
 	return
 
