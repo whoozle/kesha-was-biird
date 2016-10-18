@@ -9,11 +9,14 @@ import sys
 
 parser = argparse.ArgumentParser(description='Convert audio.')
 parser.add_argument('source', help='input file')
+parser.add_argument('address', help='address to load from')
 parser.add_argument('name', help='name')
 parser.add_argument('-e', '--encoding', help = 'encoder : [pdm|pwd]', default='pwm')
 parser.add_argument('-c', '--cutoff', help = 'cutoff value', default=0.1, type=float)
 parser.add_argument('-o', '--output', help = 'dump audio as wav file')
 args = parser.parse_args()
+
+addr = int(args.address, 16)
 
 wav = wave.open(args.source)
 n = wav.getnframes()
@@ -137,6 +140,7 @@ for idx, byte in enumerate(data):
 	else:
 		source += ' '
 
+offsets.append(0xffff)
 for offset in offsets:
 	index += '\t0x%02x 0x%02x\n' %(offset & 0xff, (offset >> 8))
 
@@ -151,6 +155,7 @@ for idx, byte in enumerate(data):
 		source += ' '
 
 size /= 16 #loop count
+print (":org 0x%04x\n" %addr)
 print (": audio_%s_size\n\t0x%02x 0x%02x\n: audio_%s_index\n%s\n%s"  %(args.name, size & 0xff, size >> 8, args.name, index, source))
 
 if args.output:
