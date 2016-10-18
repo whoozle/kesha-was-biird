@@ -140,9 +140,10 @@ for idx, byte in enumerate(data):
 	else:
 		source += ' '
 
-offsets.append(0xffff)
 for offset in offsets:
+	offset += addr
 	index += '\t0x%02x 0x%02x\n' %(offset & 0xff, (offset >> 8))
+index += '\t0xff 0xff\n'
 
 for idx, byte in enumerate(data):
 	mask = idx & 0x0f
