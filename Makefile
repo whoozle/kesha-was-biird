@@ -22,6 +22,9 @@ all: game.hex
 $(PREFIX)/dtmf.8o: Makefile ./generate-dtmf.py
 		./generate-dtmf.py > $@
 
+$(PREFIX)/music_eb4.8o: Makefile ./generate-keys.py
+		./generate-keys.py > $@
+
 #$(PREFIX)/banners.8o: Makefile ./generate-texture.py assets/big_pics/*
 #		./generate-texture.py assets/big_pics/drinking.png drinking 2 16 > $@
 #		./generate-texture.py assets/big_pics/fday_devise.png banner_fday_device 2 16 >> $@
@@ -66,7 +69,12 @@ $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
 		./generate-string.py --right-align=60000 "Brought to you by Gazay & Whoozle. FROM LOVE WITH COW ©7524" > $@
 
-game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o $(PREFIX)/dtmf.8o $(PREFIX)/audio.8o $(PREFIX)/signature.8o $(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/map.8o assets/* assets/*/* sources/*.8o generate-texture.py
+game.8o: Makefile $(PREFIX)/texts.8o \
+$(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o \
+$(PREFIX)/dtmf.8o $(PREFIX)/audio.8o $(PREFIX)/signature.8o \
+$(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/map.8o \
+$(PREFIX)/music_eb4.8o \
+assets/* assets/*/* sources/*.8o generate-texture.py
 		cat sources/main.8o > $@
 		cat $(PREFIX)/texts.8o >> $@
 		cat $(PREFIX)/font.8o >> $@
@@ -83,6 +91,7 @@ game.8o: Makefile $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $
 		cat $(PREFIX)/font_data.8o >> $@
 		cat $(PREFIX)/texts_data.8o >> $@
 		cat sources/audio_data.8o >> $@
+		cat $(PREFIX)/music_eb4.8o >> $@
 		cat $(PREFIX)/tiles.8o >> $@
 #		cat $(PREFIX)/heads.8o >> $@
 		cat $(PREFIX)/dtmf.8o >> $@
