@@ -9,4 +9,4 @@ freqs = [313.96, 348.83, 367.92, 418.60, 470.93, 490.55, 545.08]
 print ": music_keys"
 
 for freq in freqs:
-	generate(pulse(freq))
+	generate(pulse(freq * 2))
