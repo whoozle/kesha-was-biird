@@ -1,3 +1,4 @@
+:const music_dt 2
 : main
 	hires
 	plane 3

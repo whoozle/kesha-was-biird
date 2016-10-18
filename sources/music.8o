@@ -4,6 +4,7 @@
 		return
 
 	v2 := 2 #index increment
+	v3 := music_dt
 	i := current_music_index_pos
 	load v0 - v1
 
@@ -36,8 +37,8 @@
 	0 0
 
 	audio
-	delay := v2
-	buzzer := v2
+	delay := v3
+	buzzer := v3
 
 	v0 := 0
 	return
