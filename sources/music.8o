@@ -1,4 +1,4 @@
-: music_play
+: music_play_impl
 	v0 := delay
 	if v0 != 0 then
 		return
@@ -36,9 +36,39 @@
 : current_music_pos
 	0 0
 
-	audio
 	delay := v3
 	buzzer := v3
 
 	v0 := 0
+	return
+
+: music_play
+	music_play_impl
+	audio
+	return
+
+: ec4_play
+	v2 := random 0x1f
+	if v2 > 7 then
+		jump ec4_play_exit
+
+	v2 += v2
+	v2 += v2
+	v2 += v2
+	v2 += v2 #*=16
+
+	i := ec4_play_address
+:unpack 0xA music_keys
+	save v0 - v1
+
+: ec4_play_address
+	0 0
+	i += v2
+
+: ec4_play_exit
+	audio
+	loop
+		v0 := delay
+		if v0 != 0 then
+	again
 	return

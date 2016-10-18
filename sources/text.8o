@@ -37,8 +37,11 @@
 	i := draw_text_instruction_addr
 	save v1
 
-	i := long audio_text_beep
-	audio_play_sync
+#	i := long audio_text_beep
+#	audio_play_sync
+
+	music_play_impl
+	ec4_play
 
 	jump draw_text_loop
 
