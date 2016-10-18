@@ -9,15 +9,15 @@
 	vc := text_splash_title
 	draw_text
 
-	loop
-		i := long audio_music_size
-		load va - vb
-		i := long audio_music
-		audio_play_stream
-
-		v0 := 1
-		if v0 -key then
-	again
+#	loop
+#		i := long audio_music_size
+#		load va - vb
+#		i := long audio_music
+#		audio_play_stream
+#
+#		v0 := 1
+#		if v0 -key then
+#	again
 
 	clear
 
