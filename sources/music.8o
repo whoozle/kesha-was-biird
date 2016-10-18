@@ -1,0 +1,13 @@
+: music_play
+	v0 := delay
+	if v0 != 0 then
+		return
+
+	i := current_music_pos
+
+	0xf0 0x00 #i := long XXXX
+: current_music_pos
+	0 0
+
+	v0 := 0
+	return

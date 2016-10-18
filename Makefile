@@ -81,6 +81,7 @@ assets/* assets/*/* sources/*.8o generate-texture.py
 		cat sources/map_runtime.8o >> $@
 		cat $(PREFIX)/map.8o >> $@
 		cat sources/flags.8o >> $@
+		cat sources/music.8o >> $@
 		cat sources/intro.8o >> $@
 #		cat $(PREFIX)/dialogs.8o >> $@
 		cat sources/utils.8o >> $@
