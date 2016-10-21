@@ -14,6 +14,7 @@ parser.add_argument('name', help='name')
 parser.add_argument('-e', '--encoding', help = 'encoder : [pdm|pwd]', default='pwm')
 parser.add_argument('-c', '--cutoff', help = 'cutoff value', default=0.1, type=float)
 parser.add_argument('-o', '--output', help = 'dump audio as wav file')
+parser.add_argument('-l', '--level', type = int, default = 0, help = 'compression level')
 args = parser.parse_args()
 
 addr = int(args.address, 16)
@@ -49,6 +50,7 @@ offset = 0
 size = 0
 bit, byte = 0, 0
 cutoff = args.cutoff
+level = args.level
 
 for i in xrange(0, n):
 	buf = []
@@ -95,9 +97,12 @@ def compress(data):
 	pack, index = [], []
 
 	def compare(pack, next, pos, n):
+		bits = 0
 		for i in xrange(1, n):
 			if pack[pos + i] != next[i]:
-				return False
+				bits += bin(pack[pos + i] ^ next[i]).count('1')
+				if bits > args.level:
+					return False
 		return True
 
 	def indexOf(next):
@@ -123,7 +128,7 @@ def compress(data):
 			pack += next
 		index.append(src)
 
-	print("compressed data: %u + %u bytes, ratio: %.1f%%" %(len(pack), len(index) * 2, 100.0 * (len(pack) + len(index) * 2) / len(data)), file=sys.stderr)
+	print("compressed data: %u + %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, args.level, 100.0 * (len(pack) + len(index) * 2) / len(data)), file=sys.stderr)
 	return pack, index
 
 data, offsets = compress(data)
