@@ -149,18 +149,11 @@ for idx, byte in enumerate(data):
 
 for offset in offsets:
 	offset += addr + (len(offsets) * 2) + 2
-	index += '\t0x%02x 0x%02x\n' %((offset >> 8), offset & 0xff)
+	h, l = (offset >> 8), offset & 0xff
+	if h >= 0x100:
+		raise Exception('offset is out of 64k')
+	index += '\t0x%02x 0x%02x\n' %(h, l)
 index += '\t0xff 0xff\n'
-
-for idx, byte in enumerate(data):
-	mask = idx & 0x0f
-	if mask == 0:
-		source += '\t'
-	source += '0x%02x' %byte
-	if mask == 15:
-		source += '\n'
-	else:
-		source += ' '
 
 size /= 16 #loop count
 print (":org 0x%04x\n" %addr)
