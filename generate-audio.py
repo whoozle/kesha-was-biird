@@ -94,6 +94,12 @@ def compress(data):
 	print("uncompressed data: %u bytes" %len(data), file=sys.stderr)
 	pack, index = [], []
 
+	def compare(pack, next, pos, n):
+		for i in xrange(1, n):
+			if pack[pos + i] != next[i]:
+				return False
+		return True
+
 	def indexOf(next):
 		first = next[0]
 		n = len(next)
@@ -101,12 +107,7 @@ def compress(data):
 			pos = 0
 			while True:
 				pos = pack.index(first, pos, len(pack) - n)
-				eq = True
-				for i in xrange(1, n):
-					if pack[pos + i] != next[i]:
-						eq = False
-						break
-				if eq:
+				if compare(pack, next, pos, n):
 					return pos
 				else:
 					pos += 1
