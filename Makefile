@@ -67,7 +67,7 @@ $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
 		./generate-audio.py assets/sounds/kesha.wav a000 music -c 0.25 -l4 -o $(PREFIX)/audio.wav > $@
 
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
-		./generate-string.py --right-align=65000 "Brought to you by Gazay & Whoozle. FROM LOVE WITH COW ©7524" > $@
+		./generate-string.py --right-align=65000 "BROUGHT TO YOU BY GAZAY & WHOOZLE. FROM LOVE WITH COW AND THANKS FOR THE FISH. FISH. YOU GOT IT?? GOT IT??? FISH!!! AHAHAHAHAHAHA ©7524" > $@
 
 game.8o: Makefile $(PREFIX)/texts.8o \
 $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o \
