@@ -128,7 +128,8 @@ def compress(data):
 			pack += next
 		index.append(src)
 
-	print("compressed data: %u + %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, args.level, 100.0 * (len(pack) + len(index) * 2) / len(data)), file=sys.stderr)
+	total = len(pack) + len(index) * 2
+	print("compressed data: %u + %u = %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, total, args.level, 100.0 * total / len(data)), file=sys.stderr)
 	return pack, index
 
 data, offsets = compress(data)
