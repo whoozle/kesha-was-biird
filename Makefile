@@ -64,7 +64,7 @@ $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json $(PREFIX)/ma
 		./generate-text.py $(PREFIX) 1500 assets/en.json $(PREFIX)/map.json
 
 $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
-		./generate-audio.py assets/sounds/kesha.wav 3800 music -o $(PREFIX)/audio.wav > $@
+		./generate-audio.py assets/sounds/kesha.wav a000 music -l4 -o $(PREFIX)/audio.wav > $@
 
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
 		./generate-string.py --right-align=60000 "Brought to you by Gazay & Whoozle. FROM LOVE WITH COW ©7524" > $@
