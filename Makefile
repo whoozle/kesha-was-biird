@@ -98,7 +98,7 @@ assets/* assets/*/* sources/*.8o generate-texture.py
 		cat $(PREFIX)/dtmf.8o >> $@
 #		cat $(PREFIX)/banners.8o >> $@
 		cat $(PREFIX)/audio.8o >> $@
-#		cat $(PREFIX)/signature.8o >> $@
+		cat $(PREFIX)/signature.8o >> $@
 
 game.bin: game.8o
 	./octo/octo game.8o $@
