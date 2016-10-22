@@ -9,6 +9,7 @@ args = parser.parse_args()
 
 lab_ruins = Location('DEAD LAB')
 lab_ruins_def = State("Black mouth of dead lab\nlays before you")
+lab_ruins_def.add_action(Action('Go outside', go(lab_ruins)))
 lab_ruins.add_state('default', lab_ruins_def)
 
 #vault.text("Proffesor woke up.")
