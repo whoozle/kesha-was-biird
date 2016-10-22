@@ -17,7 +17,7 @@
 
 	i := draw_text_instruction_addr
 	save v1
-	vd := 1
+	v4 := 1
 
 : draw_text_loop
 	0xf0 0x00 #i := long XXXX
@@ -32,7 +32,7 @@
 
 	i := draw_text_instruction_addr
 	load v1
-	v1 += vd #+1
+	v1 += v4 #+1
 	v0 += vf
 	i := draw_text_instruction_addr
 	save v1
@@ -50,7 +50,7 @@
 
 	i := draw_text_ns_instruction_addr
 	save v1
-	vd := 1
+	v4 := 1
 
 : draw_text_ns_loop
 	0xf0 0x00 #i := long XXXX
@@ -65,7 +65,7 @@
 
 	i := draw_text_ns_instruction_addr
 	load v1
-	v1 += vd #+1
+	v1 += v4 #+1
 	v0 += vf
 	i := draw_text_ns_instruction_addr
 	save v1
