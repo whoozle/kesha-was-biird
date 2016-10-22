@@ -1,5 +1,6 @@
 : sleep
 	delay := va
+: wait_delay
 	loop
 		vf := delay
 		if vf != 0 then
