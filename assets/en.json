@@ -1,5 +1,5 @@
 {
-	"splash_title": "KESHA WAS BIIRD",
+	"splash_title": "PRESS 1 TO START",
 	"title_1": "KESHA WAS BI",
 	"title_2": "RDRDRDRDRD  @#!$%^!&*()@#!$%^!&*()@#!$%^!&*()@#!$%^!&*()",
 	"title_3": "REBOOTING...",
@@ -11,5 +11,26 @@
 
 	"credits_art": "ART BY GAZAY",
 	"credits_pro": "GAME BY WHOOZLE&GAZAY",
-	"credits_music": "MUSIC&SFX BY WHOOZLE"
+	"credits_music": "MUSIC&SFX BY WHOOZLE",
+
+	"prologue" : [
+		"Proffessor woke up.",
+		"It's been three years since that tragic night",
+		"But questions still haunts him",
+		"What should he have done to",
+		"Prevent ninja from starting fish-day-device?",
+		"How could he stop Kesha from entering his Lab?",
+
+		"Streets lay in ruins",
+		"Luckily many people avoided",
+		"Fish-Ray radiation",
+		"And professor was among them",
+		"How did that happen?",
+
+		"But enough thinking, he has to find",
+		"Necessary components from time machine",
+		"To send someone in past",
+		"And stop Kesha from entering the lab",
+		"So be it"
+	]
 }

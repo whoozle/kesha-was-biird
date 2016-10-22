@@ -19,14 +19,22 @@ header = """\
 :const data_text_lo 0x%02x
 """ %(addr >> 8, addr & 0xff)
 
+def add(key, value):
+	global header, offsets, data
+	header += ":const text_%s %d\n" %(key, len(offsets))
+	offsets.append(len(data))
+	for ch in value:
+		data.append(ord(ch) - 31)
+	data.append(0)
+
 for source in args.sources:
 	messages = json.load(open(source))
 	for key, value in messages.iteritems():
-		header += ":const text_%s %d\n" %(key, len(offsets))
-		offsets.append(len(data))
-		for ch in value:
-			data.append(ord(ch) - 31)
-		data.append(0)
+		if isinstance(value, list):
+			for idx, text in enumerate(value, 1):
+				add('%s_%d' %(key, idx), text)
+		else:
+			add(key, value)
 
 source = ":org 0x%04x\n" %(addr)
 source += ": data_text\n\t "
