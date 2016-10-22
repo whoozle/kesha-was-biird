@@ -1,0 +1,53 @@
+: prologue
+	clear
+	vd := 0
+	loop
+		i := prologue_pos
+		i += vd
+		i += vd
+		load va - va
+
+		vb := 56
+		vc := text_prologue_1
+		vc += vd
+		draw_text_ns
+
+		i := prologue_pos
+		i += vd
+		i += vd
+		load v8 - v9
+		loop
+			scroll-up 1
+			va := 10
+			sleep
+			v9 += -1
+			if v9 != 0 then
+		again
+
+		vd += 1
+		if vd != 16 then
+	again
+	return
+
+: prologue_text
+	0
+
+: prologue_pos
+	28 4
+	25 7
+	23 7
+	20 7
+	20 7
+	20 20
+
+	20 7
+	20 7
+	20 7
+	20 7
+	20 20
+
+	20 7
+	20 7
+	20 7
+	20 14
+	20 60
