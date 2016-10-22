@@ -1,20 +1,20 @@
 : prologue
 	clear
-	v7 := 0
+	vd := 0
 	loop
 		i := prologue_pos
-		i += v7
-		i += v7
+		i += vd
+		i += vd
 		load va - va
 
 		vb := 56
 		vc := text_prologue_1
-		vc += v7
+		vc += vd
 		draw_text_ns
 
 		i := prologue_pos
-		i += v7
-		i += v7
+		i += vd
+		i += vd
 		load v8 - v9
 		loop
 			scroll-up 1
@@ -24,8 +24,8 @@
 			if v9 != 0 then
 		again
 
-		v7 += 1
-		if v7 != 16 then
+		vd += 1
+		if vd != 16 then
 	again
 	return
 
