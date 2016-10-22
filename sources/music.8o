@@ -39,7 +39,6 @@
 	delay := v3
 	buzzer := v3
 
-	v0 := 0
 	return
 
 : music_play
