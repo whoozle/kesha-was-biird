@@ -97,6 +97,4 @@
 	va := 120
 	sleep
 
-	zx_reboot
-
-	return
+	jump zx_reboot
