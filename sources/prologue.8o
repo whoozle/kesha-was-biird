@@ -2,6 +2,7 @@
 	clear
 	vd := 0
 	loop
+		music_play
 		i := prologue_pos
 		i += vd
 		i += vd
@@ -18,8 +19,14 @@
 		load v8 - v9
 		loop
 			scroll-up 1
-			va := 10
-			sleep
+			va := 7
+			loop
+				wait_delay
+				music_play
+				va += -1
+				if va != 0 then
+			again
+
 			v9 += -1
 			if v9 != 0 then
 		again
@@ -35,19 +42,19 @@
 : prologue_pos
 	28 8
 	25 8
-	23 10
+	23 12
 	20 8
-	20 8
+	20 12
 	20 24
 
-	20 7
-	20 7
-	20 7
-	20 7
-	20 20
+	0 7
+	0 7
+	0 7
+	0 7
+	0 20
 
-	20 7
-	20 7
-	20 7
-	20 14
-	20 64
+	0 7
+	0 7
+	0 7
+	0 14
+	0 64
