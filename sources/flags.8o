@@ -1,2 +1,5 @@
 : map_state
 	0		#map_state_vault_default does not work here
+
+: flag_chapter
+	1

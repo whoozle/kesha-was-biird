@@ -1,6 +1,7 @@
 : prologue
+	chapter_intertitle
 	clear
-	va := 90
+	va := 30
 	music_play_sync_va
 	vd := 0
 	loop

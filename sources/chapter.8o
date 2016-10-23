@@ -1,0 +1,67 @@
+:const intertitle_delay 180
+
+: chapter_buffer
+: chapter_buffer_0
+	0
+: chapter_buffer_1
+	0
+: chapter_buffer_2
+	0 0
+
+: chapter_title_pos
+35 0 0
+
+: chapter_intertitle
+	#panel_draw
+
+	i := flag_chapter
+	load vd - vd
+	i := chapter_buffer
+	bcd vd
+
+	va := 42 #128 - 37 - 7 / 2
+	vb := 25
+	vc := text_chapter
+	draw_text_ns
+
+
+	i := chapter_buffer_0
+	load vc - vc
+	if vc != 0 begin
+		vc += 48
+		draw_font_char
+		va += v0
+	end
+
+	i := chapter_buffer_1
+	load vc - vc
+	if vc != 0 begin
+		vc += 48
+		draw_font_char
+		va += v0
+	end
+
+	i := chapter_buffer_2
+	load vc - vc
+	vc += 48
+	draw_font_char
+
+	va := 60
+	music_play_sync_va
+
+	vd += -1
+
+	i := chapter_title_pos
+	i += vd
+	load va - va
+	vb := 32
+
+	vc := text_chapter_title_1
+	vc += vd
+
+	draw_text_ns
+
+	va := intertitle_delay
+	music_play_sync_va
+
+	return
