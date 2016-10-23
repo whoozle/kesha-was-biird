@@ -1,5 +1,7 @@
 : prologue
 	clear
+	va := 90
+	music_play_sync_va
 	vd := 0
 	loop
 		music_play

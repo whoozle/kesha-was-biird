@@ -46,6 +46,21 @@
 	audio
 	return
 
+: music_play_sync
+	music_play
+	jump wait_delay
+
+: music_play_sync_va
+	:breakpoint play_sync
+	loop
+		music_play
+		wait_delay
+		va += -1
+		:breakpoint play_sync_va
+		if va != 0 then
+	again
+	return
+
 : ec4_play
 	v2 := random 0xf
 	if v2 > 5 then
