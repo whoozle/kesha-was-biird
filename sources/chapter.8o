@@ -65,3 +65,9 @@
 	music_play_sync_va
 
 	return
+
+: chapter3_restart
+	v0 := 0
+	i := chapter3_location
+	save v0
+	jump zx_reboot

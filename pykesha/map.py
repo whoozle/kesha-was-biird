@@ -93,8 +93,12 @@ class Generator(object):
 		for idx, loc_action in enumerate(loc.actions, 1):
 			src.append(': %s_action_%d' %(loc_prefix, idx))
 			for action in loc_action.actions:
-				print loc.title, idx
-				print action.args
+				if action.name == 'go':
+					pass
+				elif action.name == 'call':
+					src.append(' '.join(action.args))
+				else:
+					raise Exception('Unsupported action %s' %action.name)
 			src.append('return')
 
 		return src
