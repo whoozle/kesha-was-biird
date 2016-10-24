@@ -16,6 +16,7 @@
 
 	i := chapter_number
 	load vd - vd
+	vd += 1
 	i := chapter_buffer
 	bcd vd
 
@@ -23,7 +24,6 @@
 	vb := 25
 	vc := text_chapter
 	draw_text_ns
-
 
 	i := chapter_buffer_0
 	load vc - vc
