@@ -84,7 +84,18 @@ class Generator(object):
 
 		src.append('va := %d' %len(loc.actions))
 		src.append('input_action')
-		src.append('return')
+		src.append('v0 += v0')
+		src.append('jump0 %s_dispatch' %loc_prefix)
+		src.append('')
+
+		src.append(': %s_dispatch' %loc_prefix)
+		for idx, loc_action in enumerate(loc.actions, 1):
+			src.append('jump %s_action_%d' %(loc_prefix, idx))
+
+		for idx, loc_action in enumerate(loc.actions, 1):
+			src.append(': %s_action_%d' %(loc_prefix, idx))
+			src.append('return')
+
 		return src
 
 	def generate(self, prefix, name):
