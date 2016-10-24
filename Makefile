@@ -12,8 +12,8 @@ $(PREFIX)/music_eb4.8o: Makefile ./generate-keys.py
 
 $(PREFIX)/tiles.8o: Makefile ./generate-texture.py assets/tiles/* #assets/*.png
 		./generate-texture.py assets/tiles/splash.png splash 2 16 > $@
-#		./generate-texture.py assets/frame.png frame 2 16 >> $@
-#		./generate-texture.py assets/room.png room 2 16 >> $@
+#		./generate-texture.py assets/tiles/frame.png frame 2 16 >> $@
+		./generate-texture.py assets/tiles/room.png room 2 16 >> $@
 
 $(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py pykesha/dialogs.py
 		./generate-dialogs.py $(PREFIX)
