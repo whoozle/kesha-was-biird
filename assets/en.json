@@ -7,6 +7,7 @@
 	],
 
 	"day_1": "DAY 1",
+	"the_end" : "THE END",
 
 	"chapter": "CHAPTER ",
 	"chapter_title" : ["ANTICIPATION", "OLD FRIENDS", "FOURTH WALL"],
@@ -21,7 +22,9 @@
 		"BY",
 		"COW NAMED SQUIRREL",
 		"Art: Gazay",
-		"Programming Music SFX: Whoozle"
+		"Programming Music SFX: Whoozle",
+		"So long,",
+		"And thanks for the fish"
 	],
 
 	"prologue" : [

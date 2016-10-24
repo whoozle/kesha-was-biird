@@ -1,21 +1,23 @@
 : prologue
-	chapter_intertitle
 	clear
 	va := 30
 	music_play_sync_va
 	vd := 0
 	loop
 		music_play
+		: prologue_pos_instruction_1
 		i := prologue_pos
 		i += vd
 		i += vd
 		load va - va
 
 		vb := 56
+		:next prologue_text_instruction
 		vc := text_prologue_1
 		vc += vd
 		draw_text_ns
 
+		: prologue_pos_instruction_2
 		i := prologue_pos
 		i += vd
 		i += vd
@@ -35,12 +37,11 @@
 		again
 
 		vd += 1
-		if vd != 17 then
+		:next prologue_n_instruction
+		v0 := 17
+		if vd != v0 then
 	again
 	return
-
-: prologue_text
-	0
 
 : prologue_pos
 	29 8

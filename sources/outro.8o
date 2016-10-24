@@ -1,4 +1,11 @@
 : outro
+	i := long tile_room_data
+	draw_fullscreen_tile
+
+	va := 120
+	music_play_sync_va
+	clear
+
 	va := 50
 	vb := 26
 	vc := text_day_1
@@ -8,13 +15,40 @@
 	music_play_sync_va
 	clear
 
-	i := long tile_room_data
-	draw_fullscreen_tile
 
-	va := 120
-	music_play_sync_va
+#hacking prologue
+	:unpack 0x0a outro_pos
+	i := prologue_pos_instruction_1
+	save v1
+	i := prologue_pos_instruction_2
+	save v1
+
+	i := prologue_n_instruction
+	v0 := 7
+	save v0
+
+	i := prologue_text_instruction
+	v0 := text_credits_1
+	save v0
+
+	prologue
 	clear
+
+	va := 0
+	vb := 29
+	vc := text_the_end
+	draw_text_ns
 
 	loop
 	music_play
 	again
+
+: outro_pos
+	0 20
+	0 20
+	0 20
+	0 20
+
+	0 20
+	0 20
+	0 20
