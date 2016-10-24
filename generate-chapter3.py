@@ -28,6 +28,7 @@ loc4.add_action(Action('5', call('zx_reboot'), go('0x11')))
 loc4.add_action(Action('42', call('zx_reboot'), go('0x11')))
 
 loc5 = Location('0x11', 'You\'re White Knight, you see\nblack tower in the distance\nHAHAHAHAHA HAHA HA :(')
+loc5.add_action(Action('jump 0x11', go(loc5)))
 
 generator = Generator()
 generator.visit(loc1, loc2, loc3, loc4, loc5)
