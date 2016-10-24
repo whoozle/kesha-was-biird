@@ -9,7 +9,7 @@
 	0 0
 
 : chapter_title_pos
-35 0 0
+35 0 38
 
 : chapter_intertitle
 	#panel_draw
@@ -19,6 +19,7 @@
 	vd += 1
 	i := chapter_buffer
 	bcd vd
+	vd += -1
 
 	va := 42 #128 - 37 - 7 / 2
 	vb := 25
@@ -48,8 +49,6 @@
 
 	va := 60
 	music_play_sync_va
-
-	vd += -1
 
 	i := chapter_title_pos
 	i += vd
