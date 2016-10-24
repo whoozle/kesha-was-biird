@@ -90,6 +90,9 @@ class Generator(object):
 		for idx, loc_action in enumerate(loc.actions, 1):
 			src.append('jump %s_action_%d' %(loc_prefix, idx))
 
+		if not loc.actions:
+			print 'WARNING: location %s does not have any actions' %loc.title
+
 		for idx, loc_action in enumerate(loc.actions, 1):
 			src.append('')
 			src.append(': %s_action_%d' %(loc_prefix, idx))
