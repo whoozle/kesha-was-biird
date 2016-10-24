@@ -37,8 +37,6 @@ class ActionFactory(object):
 		return ActionFactory.Impl(self.name, args, kw)
 
 go = ActionFactory('go')
-rest = ActionFactory('rest')
-restart = ActionFactory('restart')
 call = ActionFactory('call')
 
 class Generator(object):
@@ -94,6 +92,9 @@ class Generator(object):
 
 		for idx, loc_action in enumerate(loc.actions, 1):
 			src.append(': %s_action_%d' %(loc_prefix, idx))
+			for action in loc_action.actions:
+				print loc.title, idx
+				print action.args
 			src.append('return')
 
 		return src

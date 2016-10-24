@@ -14,7 +14,7 @@ lab_ruins.add_action(Action('Go outside', go(lab_ruins)))
 
 vault = Location('VAULT', "Vault was warm and cozy,\nalmost nothing reminiscents\nrecent fishapocalipse.")
 vault.add_action(Action('Go outside', go(lab_ruins)))
-vault.add_action(Action('Stay inside', rest()))
+#vault.add_action(Action('Stay inside', call('vault_rest')))
 
 generator = Generator()
 generator.visit(lab, vault, lab_ruins)

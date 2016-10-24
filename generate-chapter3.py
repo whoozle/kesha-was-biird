@@ -8,13 +8,13 @@ parser.add_argument('prefix', help='target directory')
 args = parser.parse_args()
 
 loc1 = Location('0x01', 'You\'re White Knight, you see\nblack tower in the distance\nWhat would you do?')
-loc1.add_action(Action('Nothing', restart))
+loc1.add_action(Action('Nothing', call('chapter3_restart')))
 loc1.add_action(Action('Rush towards the tower', go('0x02')))
-loc1.add_action(Action('Go home', restart))
+loc1.add_action(Action('Go home', call('chapter3_restart')))
 
 loc2 = Location('0x02', 'See! You can\'t resist me\nYou hear familiar G G GGGLN\nVVVvoice. Your next move')
-loc2.add_action(Action('Nothing', restart))
-loc2.add_action(Action('Shout answer', restart))
+loc2.add_action(Action('Nothing', call('chapter3_restart')))
+loc2.add_action(Action('Shout answer', call('chapter3_restart')))
 loc2.add_action(Action('Bash tower door', go('0x03')))
 
 loc3 = Location('0x03', 'All right, you won.\nNo more nasty reboots\nIt\'s dark')
