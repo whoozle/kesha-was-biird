@@ -6,6 +6,11 @@
 0x80 0x00
 
 : zx_reboot
+	wait_delay
+	i := long audio_restart
+	vf := 60
+	audio_play_sync_vf
+
 	clear
 	v0 := 0
 	v1 := 0
