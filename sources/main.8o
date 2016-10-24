@@ -10,6 +10,7 @@
 	prologue
 
 : main_skip
+	chapter_intertitle
 	loop
 	clear
 	chapter_dispatch
