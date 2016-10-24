@@ -4,6 +4,5 @@
 	0
 : chapter3_location
 	0
-
-: flag_chapter
-	1
+: chapter_number
+	2

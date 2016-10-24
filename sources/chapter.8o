@@ -14,7 +14,7 @@
 : chapter_intertitle
 	#panel_draw
 
-	i := flag_chapter
+	i := chapter_number
 	load vd - vd
 	i := chapter_buffer
 	bcd vd

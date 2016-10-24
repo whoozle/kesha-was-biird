@@ -12,5 +12,13 @@
 : main_skip
 	loop
 	clear
-	chapter3_dispatch
+	i := chapter_number
+	load v0
+	v0 += v0
+	jump0 chapter_dispatch_table
 	again
+
+: chapter_dispatch_table
+	jump chapter1_dispatch
+	jump chapter2_dispatch
+	jump chapter3_dispatch
