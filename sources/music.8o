@@ -51,12 +51,10 @@
 	jump wait_delay
 
 : music_play_sync_va
-	:breakpoint play_sync
 	loop
 		music_play
 		wait_delay
 		va += -1
-		:breakpoint play_sync_va
 		if va != 0 then
 	again
 	return
