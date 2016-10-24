@@ -7,10 +7,11 @@
 
 #	splash_draw
 	intro
+
+	chapter_intertitle
 	prologue
 
 : main_skip
-	chapter_intertitle
 	loop
 	clear
 	chapter_dispatch
