@@ -14,7 +14,7 @@ loc1.add_action(Action('Go home', restart))
 
 loc2 = Location('0x02', 'See! You can\'t resist me\nYou hear familiar G G GGGLN\nVVVvoice. Your next move')
 loc2.add_action(Action('Nothing', restart))
-loc2.add_action(Action('Nothing', restart))
+loc2.add_action(Action('Shout answer', restart))
 loc2.add_action(Action('Bash tower door', go('0x03')))
 
 loc3 = Location('0x03', 'All right, you won.\nNo more nasty reboots\nIt\'s dark')
