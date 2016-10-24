@@ -100,7 +100,8 @@ class Generator(object):
 				if action.name == 'go':
 					target = action.args[0]
 					if isinstance(target, Location):
-						target = escape(target.title)
+						target = target.title
+					target = escape(target)
 
 					labels = map(lambda loc: escape(loc.title), self.__locations)
 					idx = labels.index(target)
