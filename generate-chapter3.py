@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='generate maps')
 parser.add_argument('prefix', help='target directory')
 args = parser.parse_args()
 
-loc1 = Location('0x01', 'You\'re White Knight\nYou see black tower in the distance\nWhat would you do?')
+loc1 = Location('0x01', 'You\'re White Knight, you see\nblack tower in the distance\nWhat would you do?')
 loc1.add_action(Action('Nothing', restart))
 loc1.add_action(Action('Ride your horse towards the tower', go('0x02')))
 loc1.add_action(Action('Go home', restart))
