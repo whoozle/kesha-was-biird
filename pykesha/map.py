@@ -60,10 +60,27 @@ class Generator(object):
 		self.__locations += locs
 
 	def _generate_location(self, prefix, loc):
-		loc_prefix = escape(loc.title)
+		loc_prefix = prefix + '_' + escape(loc.title)
+		self.text(loc_prefix, loc.title)
 
 		src = ['']
-		src.append(': %s_%s_draw' %(prefix, loc_prefix))
+		src.append(': %s_draw' %(loc_prefix))
+		src.append('va := map_title_x')
+		src.append('vb := map_title_y')
+		src.append('vc := text_%s' %loc_prefix)
+		src.append('draw_text')
+
+		for idx, text in enumerate(loc.texts, 1):
+			label = '%s_text_%d' %(loc_prefix, idx)
+			self.text(label, text)
+			src.append('vc := text_%s' %label)
+			src.append('map_draw_text_%d' %idx)
+
+		for idx, action in enumerate(loc.actions, 1):
+			print idx
+
+		src.append('va := %d' %len(loc.actions))
+		src.append('input_action')
 		src.append('return')
 		return src
 

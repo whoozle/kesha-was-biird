@@ -1,61 +1,68 @@
 :const map_title_x 10
 :const map_title_y 1
 
-:const map_state_x 20
-:const map_state_y1 10
-:const map_state_y2 17
-:const map_state_y3 24
-:const map_state_y4 31
+:const map_text_x 5
+:const map_text_y1 10
+:const map_text_y2 17
+:const map_text_y3 24
+:const map_text_y4 31
 
 :const map_action_x 10
-:const map_action_text_x 20
 :const map_action_y1 33
 :const map_action_y2 40
 :const map_action_y3 47
 :const map_action_y4 54
 
-: draw_action_1
+: map_draw_action_1
 	va := map_action_x
 	vb := map_action_y1
 	vc := text_action_1
+	draw_text
+	vc := vd
 	jump draw_text
 
-: draw_action_2
+: map_draw_action_2
 	va := map_action_x
 	vb := map_action_y2
 	vc := text_action_2
+	draw_text
+	vc := vd
 	jump draw_text
 
-: draw_action_3
+: map_draw_action_3
 	va := map_action_x
 	vb := map_action_y3
 	vc := text_action_3
+	draw_text
+	vc := vd
 	jump draw_text
 
-: draw_action_4
+: map_draw_action_4
 	va := map_action_x
 	vb := map_action_y4
 	vc := text_action_4
+	draw_text
+	vc := vd
 	jump draw_text
 
-: draw_action_text_1
-	va := map_action_text_x
-	vb := map_action_y1
+: map_draw_text_1
+	va := map_text_x
+	vb := map_text_y1
 	jump draw_text
 
-: draw_action_text_2
-	va := map_action_text_x
-	vb := map_action_y2
+: map_draw_text_2
+	va := map_text_x
+	vb := map_text_y2
 	jump draw_text
 
-: draw_action_text_3
-	va := map_action_text_x
-	vb := map_action_y3
+: map_draw_text_3
+	va := map_text_x
+	vb := map_text_y3
 	jump draw_text
 
-: draw_action_text_4
-	va := map_action_text_x
-	vb := map_action_y4
+: map_draw_text_4
+	va := map_text_x
+	vb := map_text_y4
 	jump draw_text
 
 : input_action
