@@ -107,6 +107,9 @@ class Generator(object):
 		decl = []
 		src = []
 
+		src.append(': %s_location' %name)
+		src.append('0')
+
 		src.append(': %s_dispatch' %name)
 		src.append('i := %s_location' %name)
 		src.append('load v0')
