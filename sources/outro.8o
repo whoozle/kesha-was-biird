@@ -1,0 +1,20 @@
+: outro
+	va := 50
+	vb := 26
+	vc := text_day_1
+	draw_text
+
+	va := 120
+	music_play_sync_va
+	clear
+
+	i := long tile_room_data
+	draw_fullscreen_tile
+
+	va := 120
+	music_play_sync_va
+	clear
+
+	loop
+	music_play
+	again

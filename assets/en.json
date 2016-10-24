@@ -1,8 +1,13 @@
 {
-	"splash_title": "PRESS 1 TO START",
-	"title_1": "KESHA WAS BI",
-	"title_2": "RDRDRDRDRD  @#!$%^!&*()@#!$%^!&*()@#!$%^!&*()@#!$%^!&*()",
-	"title_3": "REBOOTING...",
+	"splash_title": "COW NAMED SQUIRELL",
+	"title": [
+		"KESHA WAS BI",
+		"RDRDRDRDRD  @#!$%^!&*()@#!$%^!&*()@#!$%^!&*()@#!$%^!&*()",
+		"REBOOTING..."
+	],
+
+	"day_1": "DAY 1",
+
 	"chapter": "CHAPTER ",
 	"chapter_title" : ["ANTICIPATION", "OLD FRIENDS", "FOURTH WALL"],
 
@@ -11,9 +16,13 @@
 	"action_3" : "3. ",
 	"action_4" : "4. ",
 
-	"credits_art": "ART BY GAZAY",
-	"credits_pro": "GAME BY WHOOZLE&GAZAY",
-	"credits_music": "MUSIC&SFX BY WHOOZLE",
+	"credits": [
+		"KESHA WAS BIIRD",
+		"BY",
+		"COW NAMED SQUIRREL",
+		"Art: Gazay",
+		"Programming Music SFX: Whoozle"
+	],
 
 	"prologue" : [
 		"Proffessor woke up.",

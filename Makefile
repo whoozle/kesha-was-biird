@@ -57,6 +57,7 @@ assets/* assets/*/* sources/*.8o generate-texture.py
 		cat $(PREFIX)/chapter3.8o >> $@
 		cat sources/music.8o >> $@
 		cat sources/intro.8o >> $@
+		cat sources/outro.8o >> $@
 		cat sources/prologue.8o >> $@
 		cat sources/chapter.8o >> $@
 #		cat $(PREFIX)/dialogs.8o >> $@
