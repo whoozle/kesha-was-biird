@@ -91,6 +91,7 @@ class Generator(object):
 			src.append('jump %s_action_%d' %(loc_prefix, idx))
 
 		for idx, loc_action in enumerate(loc.actions, 1):
+			src.append('')
 			src.append(': %s_action_%d' %(loc_prefix, idx))
 			for action in loc_action.actions:
 				if action.name == 'go':
@@ -104,14 +105,13 @@ class Generator(object):
 					src.append('i := %s_location' %prefix)
 					src.append('v0 := %d' %idx)
 					src.append('save v0')
-					src.append('return')
 
 				elif action.name == 'call':
-					for arg in action.args[:-1]:
+					for arg in action.args:
 						src.append(arg)
-					src.append('jump ' + action.args[-1])
 				else:
 					raise Exception('Unsupported action %s' %action.name)
+			src.append('return')
 
 		return src
 
