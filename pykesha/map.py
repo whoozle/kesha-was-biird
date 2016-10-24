@@ -21,9 +21,9 @@ class Location(object):
 
 
 class Action(object):
-	def __init__(self, title, action):
+	def __init__(self, title, *actions):
 		self.title = title
-		self.action = action
+		self.actions = actions
 
 class ActionFactory(object):
 	class Impl(object):
@@ -38,6 +38,8 @@ class ActionFactory(object):
 
 go = ActionFactory('go')
 rest = ActionFactory('rest')
+restart = ActionFactory('restart')
+call = ActionFactory('call')
 
 class Generator(object):
 	def __init__(self):
