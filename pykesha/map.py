@@ -55,6 +55,7 @@ class Generator(object):
 
 	def text(self, label, text):
 		self.__texts[label] = text
+		return label
 
 	def visit(self, *locs):
 		self.__locations += locs
@@ -72,12 +73,14 @@ class Generator(object):
 
 		for idx, text in enumerate(loc.texts, 1):
 			label = '%s_text_%d' %(loc_prefix, idx)
-			self.text(label, text)
-			src.append('vc := text_%s' %label)
+			
+			src.append('vc := text_%s' %self.text(label, text))
 			src.append('map_draw_text_%d' %idx)
 
 		for idx, action in enumerate(loc.actions, 1):
-			print idx
+			label = '%s_action_%d' %(loc_prefix, idx)
+			src.append('vd := text_%s' %self.text(label, action.title))
+			src.append('map_draw_action_%d' %idx)
 
 		src.append('va := %d' %len(loc.actions))
 		src.append('input_action')
