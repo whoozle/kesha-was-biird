@@ -2,6 +2,10 @@ import os.path
 import json
 import re
 
+escape_re = re.compile(r'[^\w]')
+def escape(text):
+	return escape_re.sub('_', text).lower()
+
 class Location(object):
 	def __init__(self, title, text):
 		self.title = title
@@ -46,14 +50,20 @@ class Generator(object):
 		self.__counters[name] = value + 1
 		return value
 
-	def escape(self, text):
-		return re.sub(r'[^\w]', '_', text).lower()
 
 	def text(self, label, text):
 		self.__texts[label] = text
 
 	def visit(self, *locs):
-		return
+		self.__locations += locs
+
+	def _generate_location(self, prefix, loc):
+		loc_prefix = escape(loc.title)
+
+		src = ['']
+		src.append(': %s_%s_draw' %(prefix, loc_prefix))
+		src.append('return')
+		return src
 
 	def generate(self, prefix, name):
 		decl = []
@@ -66,11 +76,15 @@ class Generator(object):
 		src.append('jump0 %s_dispatch_table' %name)
 		src.append('')
 
+		for loc in self.__locations:
+			src += self._generate_location(name, loc)
+
 		decl.append('')
+		src.append('')
 
 		src.append(': %s_dispatch_table' %name)
 		for loc in self.__locations:
-			src.append("jump %s_draw" %escape(loc.name))
+			src.append("jump %s_%s_draw" %(name, escape(loc.title)))
 
 		decl.append('')
 		src.append('')
