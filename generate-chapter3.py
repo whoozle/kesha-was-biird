@@ -12,7 +12,7 @@ loc1.add_action(Action('Nothing', call('chapter3_restart')))
 loc1.add_action(Action('Rush towards the tower', go('0x02')))
 loc1.add_action(Action('Go home', call('chapter3_restart')))
 
-loc2 = Location('0x02', 'See! You can\'t resist me\nYou hear familiar G G GGGLN\nVVVvoice. Your next move')
+loc2 = Location('0x02', 'See! You CAN\'T resist me!\nYou hear familiar G G GGGLN\nVVVvoice. Your next move?')
 loc2.add_action(Action('Nothing', call('chapter3_restart')))
 loc2.add_action(Action('Shout answer', call('chapter3_restart')))
 loc2.add_action(Action('Bash tower door', go('0x03')))
