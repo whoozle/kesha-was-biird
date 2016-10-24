@@ -23,11 +23,11 @@ loc3.add_action(Action('Light match', call('zx_reboot'), go('0x04')))
 loc3.add_action(Action('Wait until you can see', call('zx_reboot'), go('0x04')))
 
 loc4 = Location('0x04', 'Gotcha! Hahaha\nLike I said, NO MORE RESTARTS\n2 + 2 = ?')
-loc4.add_action(Action('3', call('zx_reboot'), go('0x05')))
-loc4.add_action(Action('5', call('zx_reboot'), go('0x05')))
-loc4.add_action(Action('42', call('zx_reboot'), go('0x05')))
+loc4.add_action(Action('3', call('zx_reboot'), go('0x11')))
+loc4.add_action(Action('5', call('zx_reboot'), go('0x11')))
+loc4.add_action(Action('42', call('zx_reboot'), go('0x11')))
 
-loc5 = Location('0x05', 'You\'re White Knight, you see\nblack tower in the distance\nHAHAHAHAHA HAHA HA :(')
+loc5 = Location('0x11', 'You\'re White Knight, you see\nblack tower in the distance\nHAHAHAHAHA HAHA HA :(')
 
 generator = Generator()
 generator.visit(loc1, loc2, loc3, loc4, loc5)
