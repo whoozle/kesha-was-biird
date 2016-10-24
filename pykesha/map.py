@@ -94,12 +94,24 @@ class Generator(object):
 			src.append(': %s_action_%d' %(loc_prefix, idx))
 			for action in loc_action.actions:
 				if action.name == 'go':
-					pass
+					target = action.args[0]
+					if isinstance(target, Location):
+						target = escape(target.title)
+
+					labels = map(lambda loc: escape(loc.title), self.__locations)
+					idx = labels.index(target)
+
+					src.append('i := %s_location' %prefix)
+					src.append('v0 := %d' %idx)
+					src.append('save v0')
+					src.append('return')
+
 				elif action.name == 'call':
-					src.append(' '.join(action.args))
+					for arg in action.args[:-1]:
+						src.append(arg)
+					src.append('jump ' + action.args[-1])
 				else:
 					raise Exception('Unsupported action %s' %action.name)
-			src.append('return')
 
 		return src
 
