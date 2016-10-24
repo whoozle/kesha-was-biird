@@ -67,6 +67,10 @@
 	return
 
 : chapter3_restart
+	wait_delay
+	i := long audio_restart
+	vf := 60
+	audio_play_sync_vf
 	v0 := 0
 	i := chapter3_location
 	save v0
