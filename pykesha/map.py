@@ -60,10 +60,19 @@ class Generator(object):
 		src = []
 
 		src.append(': %s_dispatch' %name)
-		src.append('i := %s_state' %name)
+		src.append('i := %s_location' %name)
 		src.append('load v0')
 		src.append('v0 += v0')
 		src.append('jump0 %s_dispatch_table' %name)
+		src.append('')
+
+		decl.append('')
+
+		src.append(': %s_dispatch_table' %name)
+		for loc in self.__locations:
+			src.append("jump %s_draw" %escape(loc.name))
+
+		decl.append('')
 		src.append('')
 
 		with open(os.path.join(prefix, name + '.json'), 'wt') as text:

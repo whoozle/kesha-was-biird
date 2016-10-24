@@ -12,5 +12,5 @@
 : main_skip
 	loop
 	clear
-	map_dispatch
+	chapter3_dispatch
 	again

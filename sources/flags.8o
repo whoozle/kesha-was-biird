@@ -1,5 +1,9 @@
-: map_state
-	0		#map_state_vault_default does not work here
+: chapter1_location
+	0
+: chapter2_location
+	0
+: chapter3_location
+	0
 
 : flag_chapter
 	1
