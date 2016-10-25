@@ -66,7 +66,6 @@ class Generator(object):
 		src.append('vb := map_title_y')
 		src.append('vc := text_%s' %loc_prefix)
 		src.append('draw_text')
-		src.append('map_disable_actions')
 
 		label = '%s_text' %(loc_prefix)
 		src.append('vc := text_%s' %self.text(label, loc.text))
@@ -141,6 +140,7 @@ class Generator(object):
 		src.append('0')
 
 		src.append(': %s_dispatch' %name)
+		src.append('map_disable_actions')
 		src.append('i := %s_location' %name)
 		src.append('load v0')
 		src.append('v0 += v0')

@@ -78,24 +78,25 @@
 
 : input_action_ok
 	v0 += -1
-	i := map_action_enabled
+	i := map_action_all_enabled
 	i += v0
 	load v1 - v1
 	if v1 == 0 then jump input_action
 	return
 
 : map_check_action
-	i := map_action_enabled
+	i := map_action_all_enabled
 	i += va
 	load v0
 	return
 
 : map_disable_actions
-	i := map_action_enabled
+	i := map_action_all_enabled
 	v0 := 0
-	v1 := v0
-	save v0 - v1
-	save v0 - v1
+	save v0
+	save v0
+	save v0
+	save v0
 	return
 
 : map_enable_action_1
@@ -117,7 +118,7 @@
 	i := map_action_4_enabled
 	jump map_enable_action_impl
 
-: map_action_enabled
+: map_action_all_enabled
 : map_action_1_enabled
 	0
 : map_action_2_enabled
