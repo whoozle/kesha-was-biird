@@ -17,6 +17,6 @@ vault.add_action(Action('Go outside', go(lab_ruins)))
 #vault.add_action(Action('Stay inside', call('vault_rest')))
 
 generator = Generator()
-generator.visit(lab, vault, lab_ruins)
+generator.visit(vault, lab, lab_ruins)
 
 generator.generate(args.prefix, 'chapter1')
