@@ -11,6 +11,10 @@
 :const map_action_y4 54
 
 : map_draw_action_1
+	va := 0
+	map_check_action
+	if v0 == 0 then return
+
 	va := map_action_x
 	vb := map_action_y1
 	vc := text_action_1
@@ -19,6 +23,10 @@
 	jump draw_text
 
 : map_draw_action_2
+	va := 1
+	map_check_action
+	if v0 == 0 then return
+
 	va := map_action_x
 	vb := map_action_y2
 	vc := text_action_2
@@ -27,6 +35,10 @@
 	jump draw_text
 
 : map_draw_action_3
+	va := 2
+	map_check_action
+	if v0 == 0 then return
+
 	va := map_action_x
 	vb := map_action_y3
 	vc := text_action_3
@@ -35,6 +47,10 @@
 	jump draw_text
 
 : map_draw_action_4
+	va := 3
+	map_check_action
+	if v0 == 0 then return
+
 	va := map_action_x
 	vb := map_action_y4
 	vc := text_action_4
@@ -62,6 +78,16 @@
 
 : input_action_ok
 	v0 += -1
+	i := map_action_enabled
+	i += v0
+	load v1
+	if v1 == 0 then jump input_action
+	return
+
+: map_check_action
+	i := map_action_enabled
+	i += va
+	load v0
 	return
 
 : map_disable_actions
@@ -72,5 +98,36 @@
 	save v0 - v1
 	return
 
+: map_enable_action_1
+	i := map_action_1_enabled
+	v0 := 1
+	save v0
+	return
+
+: map_enable_action_2
+	i := map_action_2_enabled
+	v0 := 1
+	save v0
+	return
+
+: map_enable_action_3
+	i := map_action_3_enabled
+	v0 := 1
+	save v0
+	return
+
+: map_enable_action_4
+	i := map_action_4_enabled
+	v0 := 1
+	save v0
+	return
+
 : map_action_enabled
-	0 0 0 0
+: map_action_1_enabled
+	0
+: map_action_2_enabled
+	0
+: map_action_3_enabled
+	0
+: map_action_4_enabled
+	0
