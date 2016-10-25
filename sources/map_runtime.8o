@@ -93,10 +93,9 @@
 : map_disable_actions
 	i := map_action_all_enabled
 	v0 := 0
-	save v0
-	save v0
-	save v0
-	save v0
+	v1 := 0
+	save v1
+	save v1
 	return
 
 : map_enable_action_1
