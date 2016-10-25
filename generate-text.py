@@ -42,7 +42,8 @@ for source in args.sources:
 		else:
 			add(key, value)
 
-source = ":org 0x%04x\n" %(addr)
+source  = "#text size %u + %u = %u\n" %(len(data), len(offsets) * 2, len(data) + len(offsets) * 2)
+source += ":org 0x%04x\n" %(addr)
 source += ": data_text\n\t "
 source += " ".join(["0x%02x" %i for i in data])
 source += "\n\n"
