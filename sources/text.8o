@@ -1,3 +1,5 @@
+:const draw_text_line_interval 7
+
 : text_get_offset
 	i := long data_text_index
 	i += vc
@@ -40,6 +42,13 @@
 	i := draw_text_instruction_addr
 	save v1
 
+	if vc == 0xff begin
+		i := draw_text_last_x
+		load va - va
+		vb += draw_text_line_interval
+		jump draw_text_loop
+	end
+
 #	i := long audio_text_beep
 #	audio_play_sync
 
@@ -75,6 +84,12 @@
 	v0 += vf
 	i := draw_text_ns_instruction_addr
 	save v1
+
+	if vc == 0xff begin
+		i := draw_text_last_x
+		load va - va
+		vb += draw_text_line_interval
+	end
 
 	jump draw_text_ns_loop
 
