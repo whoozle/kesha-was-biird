@@ -76,7 +76,6 @@ class Generator(object):
 			src.append('vd := text_%s' %self.text(label, action.title))
 			src.append('map_draw_action_%d' %idx)
 
-		src.append('va := %d' %len(loc.actions))
 		src.append('input_action')
 		src.append('v0 += v0')
 		src.append('jump0 %s_dispatch' %loc_prefix)
