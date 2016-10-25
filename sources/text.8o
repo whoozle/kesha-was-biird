@@ -13,6 +13,9 @@
 	return
 
 : draw_text
+	i := draw_text_last_x
+	save va - va
+
 	text_get_offset
 
 	i := draw_text_instruction_addr
@@ -46,6 +49,9 @@
 	jump draw_text_loop
 
 : draw_text_ns
+	i := draw_text_last_x
+	save va - va
+
 	text_get_offset
 
 	i := draw_text_ns_instruction_addr
@@ -71,3 +77,6 @@
 	save v1
 
 	jump draw_text_ns_loop
+
+: draw_text_last_x
+	0
