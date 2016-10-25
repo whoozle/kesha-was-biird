@@ -75,7 +75,14 @@ class Generator(object):
 		for idx, action in enumerate(loc.actions, 1):
 			label = '%s_action_%d' %(loc_prefix, idx)
 			if 'predicate' in action.options:
-				print 'PREDICATE'
+				p = action.options['predicate']
+				if p.name == 'test':
+					flag, value = p.args
+					src.append('i := %s' %flag)
+					src.append('load v0')
+					src.append('if v0 == %d then map_enable_action_%d' %(value, idx))
+				else:
+					raise Exception('unknown predicate used: %s' %p.name)
 			else:
 				src.append('map_enable_action_%d' %idx)
 
