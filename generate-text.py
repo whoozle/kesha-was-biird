@@ -24,7 +24,10 @@ def add(key, value):
 	header += ":const text_%s %d\n" %(key, len(offsets))
 	offsets.append(len(data))
 	for ch in value:
-		v = ord(ch) - 31
+		if ch == '\n':
+			v = 0xff
+		else:
+			v = ord(ch) - 31
 		if v < 0:
 			raise Exception('invalid character %s' %repr(ch))
 		data.append(v)
