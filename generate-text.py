@@ -12,6 +12,7 @@ args = parser.parse_args()
 
 offsets = []
 data = []
+lookup = {}
 
 addr = int(args.address, 16)
 header = """\
@@ -20,9 +21,17 @@ header = """\
 """ %(addr >> 8, addr & 0xff)
 
 def add(key, value):
-	global header, offsets, data
-	header += ":const text_%s %d\n" %(key, len(offsets))
-	offsets.append(len(data))
+	global header, offsets, data, lookup
+
+	if value in lookup:
+		index = lookup[value]
+		header += ":const text_%s %d\n" %(key, index)
+		return
+
+	index, offset = len(offsets), len(data)
+	lookup[value] = index
+	header += ":const text_%s %d\n" %(key, index)
+	offsets.append(offset)
 	for ch in value:
 		if ch == '\n':
 			v = 0xff
