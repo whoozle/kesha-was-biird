@@ -17,9 +17,10 @@ class Location(object):
 
 
 class Action(object):
-	def __init__(self, title, *actions):
+	def __init__(self, title, *actions, **options):
 		self.title = title
 		self.actions = actions
+		self.options = options
 
 class ActionFactory(object):
 	class Impl(object):
@@ -34,6 +35,8 @@ class ActionFactory(object):
 
 go = ActionFactory('go')
 call = ActionFactory('call')
+test = ActionFactory('test')
+set_flag = ActionFactory('set')
 
 class Generator(object):
 	def __init__(self):
@@ -45,7 +48,6 @@ class Generator(object):
 		value = self.__counters.get(name, 1)
 		self.__counters[name] = value + 1
 		return value
-
 
 	def text(self, label, text):
 		self.__texts[label] = text
@@ -107,6 +109,12 @@ class Generator(object):
 				elif action.name == 'call':
 					for arg in action.args:
 						src.append(arg)
+				elif action.name == 'set':
+					flag = action.args[0]
+					value = 1 if len(action.args) < 2 else action.args[1]
+					src.append('i := %s' %flag)
+					src.append('v0 := %d' %value)
+					src.append('save v0')
 				else:
 					raise Exception('Unsupported action %s' %action.name)
 			src.append('return')
