@@ -66,6 +66,7 @@ class Generator(object):
 		src.append('vb := map_title_y')
 		src.append('vc := text_%s' %loc_prefix)
 		src.append('draw_text')
+		src.append('map_disable_actions')
 
 		label = '%s_text' %(loc_prefix)
 		src.append('vc := text_%s' %self.text(label, loc.text))
@@ -73,6 +74,11 @@ class Generator(object):
 
 		for idx, action in enumerate(loc.actions, 1):
 			label = '%s_action_%d' %(loc_prefix, idx)
+			if 'predicate' in action.options:
+				print 'PREDICATE'
+			else:
+				src.append('map_enable_action_%d' %idx)
+
 			src.append('vd := text_%s' %self.text(label, action.title))
 			src.append('map_draw_action_%d' %idx)
 
