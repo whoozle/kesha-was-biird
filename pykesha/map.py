@@ -9,12 +9,8 @@ def escape(text):
 class Location(object):
 	def __init__(self, title, text):
 		self.title = title
-		self.texts = []
+		self.text = text
 		self.actions = []
-		self.text(text)
-
-	def text(self, text):
-		self.texts += text.split('\n')
 
 	def add_action(self, action):
 		self.actions.append(action)
@@ -69,11 +65,9 @@ class Generator(object):
 		src.append('vc := text_%s' %loc_prefix)
 		src.append('draw_text')
 
-		for idx, text in enumerate(loc.texts, 1):
-			label = '%s_text_%d' %(loc_prefix, idx)
-			
-			src.append('vc := text_%s' %self.text(label, text))
-			src.append('map_draw_text_%d' %idx)
+		label = '%s_text' %(loc_prefix)
+		src.append('vc := text_%s' %self.text(label, loc.text))
+		src.append('map_draw_text')
 
 		for idx, action in enumerate(loc.actions, 1):
 			label = '%s_action_%d' %(loc_prefix, idx)
