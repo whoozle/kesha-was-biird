@@ -80,7 +80,7 @@
 	v0 += -1
 	i := map_action_enabled
 	i += v0
-	load v1
+	load v1 - v1
 	if v1 == 0 then jump input_action
 	return
 
