@@ -100,27 +100,22 @@
 
 : map_enable_action_1
 	i := map_action_1_enabled
+: map_enable_action_impl
 	v0 := 1
 	save v0
 	return
 
 : map_enable_action_2
 	i := map_action_2_enabled
-	v0 := 1
-	save v0
-	return
+	jump map_enable_action_impl
 
 : map_enable_action_3
 	i := map_action_3_enabled
-	v0 := 1
-	save v0
-	return
+	jump map_enable_action_impl
 
 : map_enable_action_4
 	i := map_action_4_enabled
-	v0 := 1
-	save v0
-	return
+	jump map_enable_action_impl
 
 : map_action_enabled
 : map_action_1_enabled
