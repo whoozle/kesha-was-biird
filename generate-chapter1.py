@@ -12,11 +12,17 @@ lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable
 lab_ruins = Location('DEAD LAB ENTRANCE', "Black mouth of dead lab\nlays before you")
 lab_ruins.add_action(Action('Go outside', go(lab_ruins)))
 
+vault_bed = Location('BED', "Professor lays in bed sleepless\nHe keeps thinking on his\nnew invention")
+vault_bed.add_action(Action('Get out of bed', go('vault')))
+vault_bed.add_action(Action('Try to sleep'))
+vault_bed.add_action(Action('Invent time machine'))
+
 vault = Location('VAULT', "Vault was warm and cozy,\nalmost nothing reminiscents\nrecent fishapocalipse.")
 vault.add_action(Action('Go outside', go(lab_ruins)))
-#vault.add_action(Action('Stay inside', call('vault_rest')))
+vault.add_action(Action('Stay inside', go(vault_bed)))
+
 
 generator = Generator()
-generator.visit(vault, lab, lab_ruins)
+generator.visit(vault, lab, lab_ruins, vault_bed)
 
 generator.generate(args.prefix, 'chapter1')
