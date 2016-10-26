@@ -37,6 +37,7 @@ go = ActionFactory('go')
 call = ActionFactory('call')
 test = ActionFactory('test')
 set_flag = ActionFactory('set')
+banner = ActionFactory('banner')
 
 class Generator(object):
 	def __init__(self):
@@ -126,6 +127,11 @@ class Generator(object):
 					src.append('i := %s' %flag)
 					src.append('v0 := %d' %value)
 					src.append('save v0')
+				elif action.name == 'banner':
+					tile, text = action.args
+					src.append('i := long %s' %tile)
+					src.append('vc := %s' %text)
+					src.append('display_banner')
 				else:
 					raise Exception('Unsupported action %s' %action.name)
 			src.append('return')

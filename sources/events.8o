@@ -1,16 +1,10 @@
-: invent_time_machine
-	i := time_machine_invented
-	v0 := 1
-	save v0
-	i := long tile_time_machine_data
+: display_banner
 	draw_fullscreen_tile
 	music_play
 
 	va := 0
 	vb := 0
-	vc := text_time_machine_invented
 	draw_text
 
 	va := 120
-	music_play_sync_va
-	return
+	jump music_play_sync_va
