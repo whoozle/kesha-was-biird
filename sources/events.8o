@@ -2,8 +2,8 @@
 	draw_fullscreen_tile
 	music_play
 
-	va := 0
-	vb := 0
+	va := 4
+	vb := 4
 	draw_text
 
 	va := 120
