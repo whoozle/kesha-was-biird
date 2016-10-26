@@ -15,7 +15,7 @@ lab_ruins.add_action(Action('Go outside', go(lab_ruins)))
 vault_bed = Location('BED', "Professor lays in bed sleepless\nHe keeps thinking on his\nnew invention")
 vault_bed.add_action(Action('Get out of bed', go('vault')))
 vault_bed.add_action(Action('Try to sleep'))
-vault_bed.add_action(Action('Invent time machine', set_flag('time_machine_invented'), predicate=test('time_machine_invented', 0)))
+vault_bed.add_action(Action('Invent time machine', call('invent_time_machine'), predicate=test('time_machine_invented', 0)))
 
 vault = Location('VAULT', "Vault was warm and cozy,\nalmost nothing reminiscents\nrecent fishapocalipse.")
 vault.add_action(Action('Go outside', go(lab_ruins)))

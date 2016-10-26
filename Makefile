@@ -53,6 +53,7 @@ assets/* assets/*/* sources/*.8o generate-texture.py
 		cat $(PREFIX)/font.8o >> $@
 		cat sources/map_runtime.8o >> $@
 		cat sources/flags.8o >> $@
+		cat sources/events.8o >> $@
 		cat $(PREFIX)/chapter1.8o >> $@
 		cat $(PREFIX)/chapter2.8o >> $@
 		cat $(PREFIX)/chapter3.8o >> $@
