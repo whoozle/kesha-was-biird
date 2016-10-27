@@ -10,9 +10,15 @@ args = parser.parse_args()
 lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable panels\nare still flashing with leds')
 lab.add_action(Action('Look into broken compartment'))
 
-lab_ruins = Location('DEAD LAB ENTRANCE', "Black mouth of dead lab\nlays before you")
+chav = Location('CHAV', 'Hey you, have you seen\nthe sign there?\nShouted chav')
+chav.add_action(Action("Yes, I have"))
+chav.add_action(Action("Do nothing"))
+chav.add_action(Action("Run", go('dead lab entrance')))
+
+lab_ruins = Location('DEAD LAB ENTRANCE', "Black mouth of dead lab\nlays before you. Sign says\nRummaging punished by death.")
 lab_ruins.add_action(Action('Enter dark corridor', go(lab)))
 lab_ruins.add_action(Action('Go outside', go(lab_ruins)))
+lab_ruins.add_action(Action('Rummage through rubbish', banner('tile_chav_data', 'text_chav_greeting'), go(chav)))
 
 vault_bed = Location('BED', "Professor lays in bed sleepless\nHe keeps thinking on his\nnew invention")
 vault_bed.add_action(Action('Get out of bed', go('vault')))
@@ -27,6 +33,6 @@ vault.add_action(Action('Stay inside', go(vault_bed)))
 
 
 generator = Generator()
-generator.visit(vault, lab, lab_ruins, vault_bed)
+generator.visit(vault, lab, lab_ruins, vault_bed, chav)
 
 generator.generate(args.prefix, 'chapter1')
