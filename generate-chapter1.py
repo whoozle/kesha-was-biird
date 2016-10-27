@@ -10,7 +10,7 @@ args = parser.parse_args()
 lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable panels\nare still flashing with leds')
 lab.add_action(Action('Look into broken compartment'))
 
-chav = Location('CHAV', 'Hey you, have you seen\nthe sign there?\nShouted chav')
+chav = Location('CHAV', 'Hey you, have you seen\nthe sign there?')
 chav.add_action(Action("Yes, I have"))
 chav.add_action(Action("Do nothing"))
 chav.add_action(Action("Run", go('dead lab entrance')))
