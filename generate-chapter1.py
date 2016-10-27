@@ -8,8 +8,10 @@ parser.add_argument('prefix', help='target directory')
 args = parser.parse_args()
 
 lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable panels\nare still flashing with leds')
+lab.add_action(Action('Look into broken compartment'))
 
 lab_ruins = Location('DEAD LAB ENTRANCE', "Black mouth of dead lab\nlays before you")
+lab_ruins.add_action(Action('Enter dark corridor', go(lab)))
 lab_ruins.add_action(Action('Go outside', go(lab_ruins)))
 
 vault_bed = Location('BED', "Professor lays in bed sleepless\nHe keeps thinking on his\nnew invention")
