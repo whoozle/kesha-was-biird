@@ -43,6 +43,7 @@ call = ActionFactory('call')
 test = ActionFactory('test')
 set_flag = ActionFactory('set')
 banner = ActionFactory('banner')
+chapter = ActionFactory('chapter')
 
 class Generator(object):
 	def __init__(self):
@@ -139,6 +140,10 @@ class Generator(object):
 					src.append('i := long %s' %tile)
 					src.append('vc := %s' %text)
 					src.append('display_banner')
+				elif action.name == 'chapter':
+					idx, = action.args
+					src.append('va := %d' %(idx - 1))
+					src.append('map_set_chapter')
 				else:
 					raise Exception('Unsupported action %s' %action.name)
 			src.append('return')

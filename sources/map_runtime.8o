@@ -10,6 +10,11 @@
 :const map_action_y3 47
 :const map_action_y4 54
 
+: map_set_chapter
+	i := chapter_number
+	save va - va
+	jump chapter_intertitle
+
 : map_draw_action_1
 	va := 0
 	map_check_action

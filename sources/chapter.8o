@@ -12,6 +12,7 @@
 35 0 38
 
 : chapter_intertitle
+	clear
 	#panel_draw
 
 	i := chapter_number
