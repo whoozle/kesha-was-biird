@@ -45,7 +45,10 @@ loc8.add_action(Action('Nothing', go('game_a')))
 loc8.add_action(Action('Calling Kesha?', go('game_a')))
 
 loc9 = Location('GLITCH', "No! You keep playing this\ngoddamn game!\nYou doomed them all\nThey all suffer because of you!\nBecause you're playing it!", id='game_a')
-loc9.add_action(Action('...', go('final')))
+loc9.add_action(Action('...', go('sansara')))
+
+loc10 = Location('GLITCH', "I'm an eternal suffering to them\nI'm a wheel of existence\nI'm SANSARA!\nThey will always suffer while you\nplaying this game", id='sansara')
+loc10.add_action(Action('...', go('final')))
 
 locF = Location('FINAL DECISION', "What will you do?", id='final')
 locF.add_action(Action('Keep playing', call('outro')))
@@ -60,5 +63,5 @@ locF3 = Location('CLOSE WINDOW', "Close your browser window.\nPress Cmd-W/Alt-F4
 locF3.add_action(Action("But I'd like to see the ending", go('final')))
 
 generator = Generator()
-generator.visit(loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, locF, locF2, locF3)
+generator.visit(loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, loc10, locF, locF2, locF3)
 generator.generate(args.prefix, 'chapter3')
