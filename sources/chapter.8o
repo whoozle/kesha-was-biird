@@ -9,7 +9,7 @@
 	0 0
 
 : chapter_title_pos
-35 0 38
+35 37 38
 
 : chapter_intertitle
 	clear

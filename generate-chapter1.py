@@ -30,6 +30,7 @@ vault_bed.add_action(Action('Invent time machine', \
 vault = Location('VAULT', "Vault was warm and cozy,\nalmost nothing reminiscents\nrecent fishapocalipse.")
 vault.add_action(Action('Go outside', go(lab_ruins)))
 vault.add_action(Action('Stay inside', go(vault_bed)))
+vault.add_action(Action('Go chapter 2', chapter(2)))
 
 
 generator = Generator()
