@@ -8,7 +8,17 @@ parser.add_argument('prefix', help='target directory')
 args = parser.parse_args()
 
 lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable panels\nare still flashing with leds')
-lab.add_action(Action('Look into broken compartment'))
+lab.add_action(Action('Look into broken compartment', go('isotope')))
+
+f_ray = Location('F-RAY ISOTOPE', """F-ray isotope glowing with
+green light, which is physically
+impossible, because green
+isn't in black body's spectre
+Professor thought
+""", id='isotope')
+
+f_ray.add_action(Action('Continue searching', go(lab)))
+f_ray.add_action(Action('Pick isotope with tongs', go(lab), predicate = test('chapter1_got_tongs', 1)))
 
 chav = Location('CHAV', 'Hey you, have you seen\nthe sign there?')
 chav.add_action(Action("Yes, I have"))
@@ -34,6 +44,6 @@ vault.add_action(Action('Go chapter 2', chapter(2)))
 
 
 generator = Generator()
-generator.visit(vault, lab, lab_ruins, vault_bed, chav)
+generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray)
 
 generator.generate(args.prefix, 'chapter1')
