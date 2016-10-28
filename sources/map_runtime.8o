@@ -16,7 +16,6 @@
 	if v0 == 0 then return
 
 	va := map_action_x
-	vb := map_action_y1
 	vc := text_action_1
 	draw_text
 	vc := vd
@@ -28,7 +27,6 @@
 	if v0 == 0 then return
 
 	va := map_action_x
-	vb := map_action_y2
 	vc := text_action_2
 	draw_text
 	vc := vd
@@ -40,7 +38,6 @@
 	if v0 == 0 then return
 
 	va := map_action_x
-	vb := map_action_y3
 	vc := text_action_3
 	draw_text
 	vc := vd
@@ -52,7 +49,6 @@
 	if v0 == 0 then return
 
 	va := map_action_x
-	vb := map_action_y4
 	vc := text_action_4
 	draw_text
 	vc := vd
