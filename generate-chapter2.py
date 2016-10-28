@@ -11,7 +11,7 @@ street = Location('STREET', """City's centre looks promising.
 Professor noticed plaque next
 to the opened door saying 'G'
 """)
-street.add_action(Action("Enter G-door", go('brothel')))
+street.add_action(Action("Enter G-door", banner('tile_galina_data', 0), go('brothel')))
 
 brothel = Location('BROTHEL', """Professor entered building
 and realised that it's brothel.

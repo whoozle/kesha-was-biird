@@ -2,9 +2,11 @@
 	draw_fullscreen_tile
 	music_play
 
-	va := 4
-	vb := 4
-	draw_text
+	if vc != 0 begin
+		va := 4
+		vb := 4
+		draw_text
+	end
 
 	va := 120
 	jump music_play_sync_va
