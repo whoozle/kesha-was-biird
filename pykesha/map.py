@@ -7,13 +7,18 @@ def escape(text):
 	return escape_re.sub('_', text).lower()
 
 class Location(object):
-	def __init__(self, title, text):
+	def __init__(self, title, text, id = None):
 		self.title = title
 		self.text = text
 		self.actions = []
+		self._id = id
 
 	def add_action(self, action):
 		self.actions.append(action)
+
+	@property
+	def id(self):
+		return self._id if self._id is not None else escape(self.title)
 
 
 class Action(object):
@@ -58,7 +63,7 @@ class Generator(object):
 		self.__locations += locs
 
 	def _generate_location(self, prefix, loc):
-		loc_prefix = prefix + '_' + escape(loc.title)
+		loc_prefix = prefix + '_' + loc.id
 		self.text(loc_prefix, loc.title)
 
 		src = ['']
@@ -113,7 +118,7 @@ class Generator(object):
 						target = target.title
 					target = escape(target)
 
-					labels = map(lambda loc: escape(loc.title), self.__locations)
+					labels = map(lambda loc: loc.id, self.__locations)
 					idx = labels.index(target)
 
 					src.append('i := %s_location' %prefix)
@@ -163,7 +168,7 @@ class Generator(object):
 
 		src.append(': %s_dispatch_table' %name)
 		for loc in self.__locations:
-			src.append("jump %s_%s_draw" %(name, escape(loc.title)))
+			src.append("jump %s_%s_draw" %(name, loc.id))
 
 		decl.append('')
 		src.append('')
