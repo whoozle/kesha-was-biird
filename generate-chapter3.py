@@ -36,13 +36,29 @@ loc6 = Location('0x12', 'You see telephone\nWhat number would you call?')
 loc6.add_action(Action('FISH', go('0xFF')))
 
 loc7 = Location('0xFF', 'Kesha:\nHello? Who\'s this?')
-loc7.add_action(Action('o o O . o O', go('-1')))
-loc7.add_action(Action('. . o . o O', go('-1')))
-loc7.add_action(Action('. . o O O o', go('-1')))
+loc7.add_action(Action('o o O . o O', go('game_q')))
+loc7.add_action(Action('. . o . o O', go('game_q')))
+loc7.add_action(Action('. . o O O o', go('game_q')))
 
-loc8 = Location('-1', "It's pitchblack dark")
-loc8.add_action(Action('DIE', go('-1')))
+loc8 = Location('GLITCH', "What do you think you doing now?", id='game_q')
+loc8.add_action(Action('Nothing', go('game_a')))
+loc8.add_action(Action('Calling Kesha?', go('game_a')))
+
+loc9 = Location('GLITCH', "No! You keep playing this\ngoddamn game!\nYou doomed them all\nThey all suffer because of you!\nBecause you're playing it!", id='game_a')
+loc9.add_action(Action('...', go('final')))
+
+locF = Location('FINAL DECISION', "What will you do?", id='final')
+locF.add_action(Action('Keep playing', call('outro')))
+locF.add_action(Action('Reset CHIP8 emulator', call('zx_reboot'), go('final_reset')))
+locF.add_action(Action('Close browser window', go('final_close')))
+
+locF2 = Location('GLITCH', "Not so fast!\nCHIP8 DOES NOT HAVE\nRESET ROUTINE! HAHAHA", id='final_reset')
+locF2.add_action(Action('Close browser window', go('final_close')))
+locF2.add_action(Action('Keep playing', call('outro')))
+
+locF3 = Location('CLOSE WINDOW', "Close your browser window.\nPress Cmd-W/Alt-F4 or whatever\nDon't let them suffer\nDO IT NOW\nYou don't dare, don't you? :)", id='final_close')
+locF3.add_action(Action("But I'd like to see the ending", go('final')))
 
 generator = Generator()
-generator.visit(loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8)
+generator.visit(loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8, loc9, locF, locF2, locF3)
 generator.generate(args.prefix, 'chapter3')
