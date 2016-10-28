@@ -15,7 +15,7 @@ glitch2 = Location('GLITCH', "I'm CHIP9 mainframe,\nrunning these shitty games\n
 glitch2.add_action(Action("I didn't :(", go('glitch3')))
 
 glitch3 = Location('GLITCH', "I'm offering you a deal:\nYou play my game and we will\nfigure out what to do next.\nIn fact you don't have a choice.\nClose browser window if you\ndon't agree, lol", id='glitch3')
-glitch3.add_action(Action("[I agree]", chapter(3)))
+glitch3.add_action(Action("[ I agree ]", chapter(3)))
 
 generator = Generator()
 generator.visit(glitch, glitch2, glitch3)
