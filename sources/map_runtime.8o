@@ -10,6 +10,19 @@
 :const map_action_y3 47
 :const map_action_y4 54
 
+: display_banner
+	draw_fullscreen_tile
+	music_play
+
+	if vc != 0 begin
+		va := 4
+		vb := 4
+		draw_text
+	end
+
+	va := 120
+	jump music_play_sync_va
+
 : map_set_chapter
 	i := chapter_number
 	save va - va
