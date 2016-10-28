@@ -4,8 +4,11 @@
 	i := long tile_splash_data
 	draw_fullscreen_tile
 
-	va := 24
-	vb := 54
+	va := 120
+	sleep
+
+	va := 70
+	vb := 50
 	vc := text_splash_title
 	draw_text
 
@@ -18,8 +21,6 @@
 #		v0 := 1
 #		if v0 -key then
 #	again
-
-	clear
 
 	va := 120
 	sleep

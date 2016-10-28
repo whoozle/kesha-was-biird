@@ -5,7 +5,7 @@
 
 	jump main_skip
 
-#	splash_draw
+	splash_draw
 	intro
 
 	chapter_intertitle
