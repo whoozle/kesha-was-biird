@@ -70,6 +70,6 @@ different way to warn him
 kesha2.add_action(Action('Go city centre', chapter(2)))
 
 generator = Generator()
-generator.visit(kesha, kesha2, vault, lab, lab_ruins, vault_bed, chav, f_ray)
+generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray, kesha, kesha2)
 
 generator.generate(args.prefix, 'chapter1')
