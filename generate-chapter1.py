@@ -11,7 +11,7 @@ lab = Location('LAB INTERIOR', 'Lab refused to die easily,\nsome unrecognizeable
 lab.add_action(Action('Look into broken compartment', go('isotope')))
 lab.add_action(Action('Return to lab\'s entrance', go('dead_lab_entrance')))
 
-f_ray = Location('F-RAY ISOTOPE', """F-ray isotope glowing with
+f_ray = Location('F-RAY ISOTOPE', """F-ray isotope was glowing with
 green light, which is physically
 impossible, because green
 isn't in black body's spectre
