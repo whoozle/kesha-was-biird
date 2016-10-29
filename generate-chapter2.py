@@ -24,8 +24,8 @@ anila = Location('ANILA', """Anila, girl giggled.
 Professor remembered that he
 ain't got any money
 """)
-anila.add_action(Action('Go outside'))
-anila.add_action(Action('Offer coin'))
+anila.add_action(Action('Go outside', go(street)))
+anila.add_action(Action('Offer coin', go('glitch1')))
 
 glitch = Location('GLITCH', "           P A U S I N G\n       S I M U L A T I O N\n\nHello, nice to see you again\nDo you remember me?", id='glitch1')
 glitch.add_action(Action('Yes', go('glitch2')))
