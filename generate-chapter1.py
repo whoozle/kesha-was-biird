@@ -60,8 +60,16 @@ vault.add_action(Action('Go chapter 2', chapter(2)))
 kesha = Location('KESHA MACHINE', """Kesha's head is floating in tank,
 ready for action""", id = 'kesha')
 
+kesha.add_action(Action('Call professor', call('dialog_kesha_1'), go('kesha2')))
+
+kesha2 = Location('KESHA MACHINE', """I warned professor from the past,
+but nothing happened, why?
+I looks that we have to try
+different way to warn him
+""", id = 'kesha2')
+kesha2.add_action(Action('Go city centre', chapter(2)))
 
 generator = Generator()
-generator.visit(kesha, vault, lab, lab_ruins, vault_bed, chav, f_ray)
+generator.visit(kesha, kesha2, vault, lab, lab_ruins, vault_bed, chav, f_ray)
 
 generator.generate(args.prefix, 'chapter1')

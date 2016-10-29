@@ -36,3 +36,8 @@
 	again
 
 	return
+
+#part 1 dialog-compatible
+: panel_draw
+	clear
+	return
