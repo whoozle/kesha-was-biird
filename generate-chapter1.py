@@ -21,7 +21,7 @@ Professor thought
 f_ray.add_action(Action('Continue searching', go(lab)))
 f_ray.add_action(Action('Pick isotope with tongs', go(lab), predicate = test('chapter1_got_tongs', 1)))
 
-chav = Location('CHAV', 'Hey you, have you seen\nthe sign there?')
+chav = Location('CHAV FROM THE FUTURE', 'Hey you, have you seen\nthe sign there?', id='chav')
 chav.add_action(Action("Yes, I have", banner('tile_chav_data', 'text_chav_thanks'), set_flag('chapter1_got_tongs', 1), go('dead_lab_entrance')))
 chav.add_action(Action("Do nothing", banner('tile_chav_data', 'text_chav_thanks'), set_flag('chapter1_got_tongs', 1), go('dead_lab_entrance')))
 chav.add_action(Action("Run", go('dead lab entrance')))

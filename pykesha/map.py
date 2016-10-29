@@ -116,7 +116,7 @@ class Generator(object):
 				if action.name == 'go':
 					target = action.args[0]
 					if isinstance(target, Location):
-						target = target.title
+						target = target.id
 					target = escape(target)
 
 					labels = map(lambda loc: loc.id, self.__locations)
