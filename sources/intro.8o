@@ -50,7 +50,8 @@
 	again
 
 	clear
-	return
+	va := 90
+	jump sleep
 
 : intro
 	clear
