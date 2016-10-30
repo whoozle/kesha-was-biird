@@ -114,6 +114,18 @@ class Generator(object):
 
 		for idx, loc_action in enumerate(loc.actions, 1):
 			src.append('')
+
+			def call(func):
+				if call.last_action:
+					call.return_needed = False
+					return "jump " + func
+				else:
+					return func
+
+			call.last_action = idx == len(loc.actions)
+			call.return_needed = True
+
+
 			src.append(': %s_action_%d' %(loc_prefix, idx))
 			for action in loc_action.actions:
 				if action.name == 'go':
@@ -126,7 +138,7 @@ class Generator(object):
 					idx = labels.index(target)
 
 					src.append('va := %d' %idx)
-					src.append('%s_set_location' %prefix)
+					src.append(call('%s_set_location' %prefix))
 
 				elif action.name == 'call':
 					for arg in action.args:
@@ -149,14 +161,16 @@ class Generator(object):
 					tile, text = action.args
 					src.append('i := long %s' %tile)
 					src.append('vc := %s' %text)
-					src.append('display_banner')
+					src.append(call('display_banner'))
 				elif action.name == 'chapter':
 					idx, = action.args
 					src.append('va := %d' %(idx - 1))
-					src.append('map_set_chapter')
+					src.append(call('map_set_chapter'))
 				else:
 					raise Exception('Unsupported action %s' %action.name)
-			src.append('return')
+
+			if call.return_needed:
+				src.append('return')
 
 		return src
 
