@@ -28,6 +28,11 @@
 	save va - va
 	jump chapter_intertitle
 
+: map_draw_title
+	va := map_title_x
+	vb := map_title_y
+	jump draw_text_ns
+
 : map_draw_action_1
 	va := 0
 	map_check_action
