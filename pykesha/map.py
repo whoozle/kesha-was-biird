@@ -86,9 +86,11 @@ class Generator(object):
 				p = action.options['predicate']
 				if p.name == 'test':
 					flag, value = p.args
+					if isinstance(value, int):
+						value = '== %d' %value
 					src.append('i := %s' %flag)
 					src.append('load v0')
-					src.append('if v0 == %d then map_enable_action_%d' %(value, idx))
+					src.append('if v0 %s then map_enable_action_%d' %(value, idx))
 				else:
 					raise Exception('unknown predicate used: %s' %p.name)
 			else:
