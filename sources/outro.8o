@@ -68,7 +68,7 @@
 				v2 := 120
 			end
 		end
-		if vd < 5 then
+		if vd < 90 then #three minutes waiting
 	again
 
 	clear
