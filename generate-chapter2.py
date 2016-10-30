@@ -33,14 +33,19 @@ and realised that it's brothel.
 One of the dancing girls
 looks VERY familiar""")
 brothel.add_action(Action('Run outside', go(street)))
-brothel.add_action(Action('Ask her name', go('anila')))
+brothel.add_action(Action('Ask for her name', go('anila')))
 
 anila = Location('ANILA', """Anila, girl giggled.
-Professor remembered that he
-ain't got any money
+. . .
+The conversation flagged.
 """)
 anila.add_action(Action('Go outside', go(street)))
-anila.add_action(Action('Offer coin', go('glitch1')))
+anila.add_action(Action('Kill her', go('katana'), predicate = test('chapter2_got_katana', 1)))
+
+katana = Location('ANILA', """Anila started running, fell\nand huddled in a corner\n
+asking for mercy""", id='katana')
+katana.add_action(Action('Cut her head off', go('glitch1')))
+katana.add_action(Action('Plunge katana into her gut', go('glitch1')))
 
 glitch = Location('GLITCH', "           P A U S I N G\n       S I M U L A T I O N\n\nHello, nice to see you again\nDo you remember me?", id='glitch1')
 glitch.add_action(Action('Yes', go('glitch2')))
@@ -53,5 +58,5 @@ glitch3 = Location('GLITCH', "I'm offering you a deal:\nYou play my game and we 
 glitch3.add_action(Action("[ I agree ]", chapter(3)))
 
 generator = Generator()
-generator.visit(street, brothel, anila, glitch, glitch2, glitch3, ninja, projector)
+generator.visit(street, brothel, anila, glitch, glitch2, glitch3, ninja, projector, katana)
 generator.generate(args.prefix, 'chapter2')
