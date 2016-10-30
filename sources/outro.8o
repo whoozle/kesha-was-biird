@@ -45,13 +45,10 @@
 	again
 
 : secret_ending
-	va := 10
-	vb := 10
+	va := 27
+	vb := 30
 	vc := text_title_1
 	draw_text_ns
-
-	va := 120
-	sleep
 
 	v1 := 1
 	v2 := 120
@@ -62,9 +59,9 @@
 		if v0 == 0 begin
 			vd += 1
 			delay := v2
-			if vd == 1 begin
-				va := 70
-				vb := 20
+			if vd == 2 begin
+				va := 90
+				vb := 54
 				vc := text_title_2
 				draw_text_ns
 				v1 := 1
@@ -75,8 +72,16 @@
 	again
 
 	clear
-	epilogue
-	loop again
+	v0 := 0
+	delay := v0
+	va := 5
+	vb := 5
+	vc := text_secret_ending
+	draw_text
+
+	va := 255
+	music_play_sync_va
+	jump epilogue
 
 : outro_pos
 	29 10
