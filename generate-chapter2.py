@@ -7,11 +7,26 @@ parser = argparse.ArgumentParser(description='generate maps')
 parser.add_argument('prefix', help='target directory')
 args = parser.parse_args()
 
-street = Location('STREET', """City's centre looks promising.
-Professor noticed plaque next
-to the opened door saying 'G'
-""")
+street = Location('MARKET STREET', """City's centre looks promising.
+Professor noticed plaque next to
+the opened door saying 'G'.
+There's some camp in the distance
+""", id='street')
 street.add_action(Action("Enter G-door", banner('tile_galina_data', 0), go('brothel')))
+street.add_action(Action("Go camp", go('ninja')))
+
+ninja = Location('NINJA CAMP', """Slender ranks of deactivated
+ninjas were melting into
+the horizon. They are staring at
+the projection screen""", id='ninja')
+ninja.add_action(Action('Activate projector', go('projector')))
+ninja.add_action(Action('Take katana from nearest ninja', set_flag('chapter2_got_katana'), predicate = test('chapter2_got_katana', 0)))
+
+projector = Location('NINJA EDUCATION FILM', """Surprising, but projector worked
+You see education film about
+intercepting calls, greeting lovers
+and killing people with katana""", id='projector')
+projector.add_action(Action('Return to city centre', go('street')))
 
 brothel = Location('BROTHEL', """Professor entered building
 and realised that it's brothel.
@@ -38,5 +53,5 @@ glitch3 = Location('GLITCH', "I'm offering you a deal:\nYou play my game and we 
 glitch3.add_action(Action("[ I agree ]", chapter(3)))
 
 generator = Generator()
-generator.visit(street, brothel, anila, glitch, glitch2, glitch3)
+generator.visit(street, brothel, anila, glitch, glitch2, glitch3, ninja, projector)
 generator.generate(args.prefix, 'chapter2')
