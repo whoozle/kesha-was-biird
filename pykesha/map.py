@@ -99,7 +99,6 @@ class Generator(object):
 			src.append('map_draw_action_%d' %idx)
 
 		src.append('input_action')
-		src.append('v0 += v0')
 		src.append('jump0 %s_dispatch' %loc_prefix)
 		src.append('')
 

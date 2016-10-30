@@ -105,6 +105,7 @@
 	i += v0
 	load v1 - v1
 	if v1 == 0 then jump input_action
+	v0 += v0
 	return
 
 : map_check_action
