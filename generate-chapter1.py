@@ -73,15 +73,18 @@ recent fishapocalipse.""")
 vault.add_action(Action('Stay inside', go(vault_bed)))
 vault.add_action(Action("Go lab's ruins", go(lab_ruins)))
 vault.add_action(Action("Take a walk around crater", go(crater)))
+vault.add_action(Action("Put fish head into tank", go('kesha')))
 
-kesha = Location('KESHA MACHINE', """Kesha's head is floating in tank,
-ready for action""", id = 'kesha')
+kesha = Location('KESHA MACHINE', """Suddenly professor realised that
+fish head was Kesha's.
+He carefully left it floating
+in tank, ready for action""", id = 'kesha')
 
-kesha.add_action(Action('Call professor', call('dialog_kesha_1'), go('kesha2')))
+kesha.add_action(Action('Call professor (in the past)', call('dialog_kesha_1'), go('kesha2')))
 
 kesha2 = Location('KESHA MACHINE', """I warned professor from the past,
-but nothing happened, why?
-I looks that we have to try
+but nothing happened...
+It looks that we have to try
 different way to warn him
 """, id = 'kesha2')
 kesha2.add_action(Action('Go city centre', chapter(2)))
