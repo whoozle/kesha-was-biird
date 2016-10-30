@@ -59,7 +59,7 @@
 		if v0 == 0 begin
 			vd += 1
 			delay := v2
-			if vd == 2 begin
+			if vd == 4 begin
 				va := 90
 				vb := 54
 				vc := text_title_2
