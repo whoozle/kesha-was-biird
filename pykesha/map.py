@@ -125,9 +125,8 @@ class Generator(object):
 					labels = map(lambda loc: loc.id, self.__locations)
 					idx = labels.index(target)
 
-					src.append('i := %s_location' %prefix)
-					src.append('v0 := %d' %idx)
-					src.append('save v0')
+					src.append('va := %d' %idx)
+					src.append('%s_set_location' %prefix)
 
 				elif action.name == 'call':
 					for arg in action.args:
@@ -175,6 +174,11 @@ class Generator(object):
 		src.append('v0 += v0')
 		src.append('jump0 %s_dispatch_table' %name)
 		src.append('')
+
+		src.append(': %s_set_location' %name)
+		src.append('i := %s_location' %name)
+		src.append('save va - va')
+		src.append('return')
 
 		for loc in self.__locations:
 			src += self._generate_location(name, loc)
