@@ -16,7 +16,7 @@
 
 	if vc != 0 begin
 		va := 4
-		vb := 4
+		vb := 1
 		draw_text
 	end
 
