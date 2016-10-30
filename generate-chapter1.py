@@ -80,7 +80,9 @@ only few pieces are still
 missing.""")
 
 tm.add_action(Action("Return to vault", go(vault)))
-tm.add_action(Action("Put fish head in the tank", add_flag('chapter1_tm_stage')))#, predicate = (test('chapter1_time_machine_invented', 1), ('chapter1_got_fish'))))
+tm.add_action(Action("Put fish head in the tank", add_flag('chapter1_tm_stage'), predicate = test('chapter1_got_fish', '!= 0')))
+tm.add_action(Action("Insert f-ray isotope container", add_flag('chapter1_tm_stage'), predicate = test('chapter1_got_isotope', '!= 0')))
+tm.add_action(Action("Start machine", go('kesha'), predicate = test('chapter1_tm_stage', '>= 2')))
 
 kesha = Location('KESHA MACHINE', """Suddenly professor realised that
 fish head was Kesha's.
