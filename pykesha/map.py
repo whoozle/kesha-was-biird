@@ -113,17 +113,19 @@ class Generator(object):
 			src.append('')
 
 			src.append(': %s_action_%d' %(loc_prefix, idx))
-			for action_idx, action in enumerate(loc_action.actions, 1):
-				def call(func):
-					print func, call.last_action
-					if call.last_action:
-						call.return_needed = False
-						return "jump " + func
-					else:
-						return func
 
+			def call(func):
+				print func, call.last_action
+				if call.last_action:
+					call.return_needed = False
+					return "jump " + func
+				else:
+					return func
+
+			call.return_needed = True
+
+			for action_idx, action in enumerate(loc_action.actions, 1):
 				call.last_action = action_idx == len(loc_action.actions)
-				call.return_needed = True
 
 				if action.name == 'go':
 					target = action.args[0]
