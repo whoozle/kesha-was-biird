@@ -42,6 +42,7 @@ go = ActionFactory('go')
 call = ActionFactory('call')
 test = ActionFactory('test')
 set_flag = ActionFactory('set')
+add_flag = ActionFactory('add')
 banner = ActionFactory('banner')
 chapter = ActionFactory('chapter')
 
@@ -134,6 +135,14 @@ class Generator(object):
 					value = 1 if len(action.args) < 2 else action.args[1]
 					src.append('i := %s' %flag)
 					src.append('v0 := %d' %value)
+					src.append('save v0')
+				elif action.name == 'add':
+					flag = action.args[0]
+					value = 1 if len(action.args) < 2 else action.args[1]
+					src.append('i := %s' %flag)
+					src.append('load v0')
+					src.append('v0 += %d' %value)
+					src.append('i := %s' %flag)
 					src.append('save v0')
 				elif action.name == 'banner':
 					tile, text = action.args
