@@ -58,7 +58,7 @@
 
 	va := 10
 	vb := 10
-	vc := text_title_1
+	vc := text_title_3
 	draw_text
 
 	v9 := va
@@ -87,7 +87,7 @@
 
 	va := v9
 	vb := 13
-	vc := text_title_2
+	vc := text_title_4
 	draw_text
 
 	va := 120
@@ -97,7 +97,7 @@
 
 	va := 10
 	vb := 30
-	vc := text_title_3
+	vc := text_title_5
 	draw_text
 
 	va := 120

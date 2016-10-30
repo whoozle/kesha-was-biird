@@ -11,6 +11,7 @@
 	vc := text_day_1
 	draw_text
 
+: epilogue
 	va := 120
 	music_play_sync_va
 	clear
@@ -42,6 +43,40 @@
 	loop
 	music_play
 	again
+
+: secret_ending
+	va := 10
+	vb := 10
+	vc := text_title_1
+	draw_text_ns
+
+	va := 120
+	sleep
+
+	v1 := 1
+	v2 := 120
+	vd := 0
+	loop
+		if v1 key then return
+		v0 := delay
+		if v0 == 0 begin
+			vd += 1
+			delay := v2
+			if vd == 1 begin
+				va := 70
+				vb := 20
+				vc := text_title_2
+				draw_text_ns
+				v1 := 1
+				v2 := 120
+			end
+		end
+		if vd < 5 then
+	again
+
+	clear
+	epilogue
+	loop again
 
 : outro_pos
 	29 10

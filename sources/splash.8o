@@ -10,7 +10,7 @@
 	va := 70
 	vb := 50
 	vc := text_splash_title
-	draw_text
+	draw_text_ns
 
 #	loop
 #		i := long audio_music_size

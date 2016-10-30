@@ -5,6 +5,7 @@
 
 	jump main_skip
 
+	secret_ending
 	splash_draw
 	intro
 
