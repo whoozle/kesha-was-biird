@@ -63,8 +63,8 @@ new invention""")
 vault_bed.add_action(Action('Get out of the bed', go('vault')))
 vault_bed.add_action(Action('Try to sleep', banner('tile_dream_data', 'text_professors_dream')))
 vault_bed.add_action(Action('Invent time machine', \
-	set_flag('time_machine_invented'), banner('tile_time_machine_data', 'text_time_machine_invented'), \
-	predicate=test('time_machine_invented', 0)))
+	set_flag('chapter1_time_machine_invented'), banner('tile_time_machine_data', 'text_time_machine_invented'), \
+	predicate=test('chapter1_time_machine_invented', 0)))
 
 vault = Location('VAULT', """Vault was warm and cozy,
 almost nothing reminiscents
@@ -73,21 +73,21 @@ recent fishapocalipse.""")
 vault.add_action(Action('Stay inside', go(vault_bed)))
 vault.add_action(Action("Go lab's ruins", go(lab_ruins)))
 vault.add_action(Action("Take a walk around crater", go(crater)))
-vault.add_action(Action("Work on time machine", go("time_machine"), predicate = test('time_machine_invented', 1)))
+vault.add_action(Action("Work on time machine", go("time_machine"), predicate = test('chapter1_time_machine_invented', 1)))
 
 tm = Location('Time Machine', """Time machine was almost ready,
 only few pieces are still
 missing.""")
 
 tm.add_action(Action("Return to vault", go(vault)))
-#vault.add_action(Action("Pu", go('kesha')))#, predicate = (test('time_machine_invented', 1), ('chapter1_got_fish'))))
+tm.add_action(Action("Put fish head in the tank", add_flag('chapter1_tm_stage')))#, predicate = (test('chapter1_time_machine_invented', 1), ('chapter1_got_fish'))))
 
 kesha = Location('KESHA MACHINE', """Suddenly professor realised that
 fish head was Kesha's.
 He carefully left it floating
 in tank, ready for action""", id = 'kesha')
 
-kesha.add_action(Action('Call professor (in the past)', call('dialog_kesha_1'), go('kesha2')))
+kesha.add_action(Action('Call professor-from-the-past', call('dialog_kesha_1'), go('kesha2')))
 
 kesha2 = Location('KESHA MACHINE', """I warned professor from the past,
 but nothing happened...
