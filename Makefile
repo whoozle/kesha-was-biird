@@ -4,8 +4,8 @@ PREFIX := .compiled
 
 all: game.hex
 
-$(PREFIX)/dtmf.8o: Makefile ./generate-dtmf.py
-		./generate-dtmf.py > $@
+#$(PREFIX)/dtmf.8o: Makefile ./generate-dtmf.py
+#		./generate-dtmf.py > $@
 
 $(PREFIX)/music_eb4.8o: Makefile ./generate-keys.py
 		./generate-keys.py > $@
@@ -48,7 +48,7 @@ $(PREFIX)/signature.8o: Makefile ./generate-string.py
 
 game.8o: Makefile $(PREFIX)/texts.8o \
 $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o \
-$(PREFIX)/dtmf.8o $(PREFIX)/audio.8o $(PREFIX)/signature.8o \
+$(PREFIX)/audio.8o $(PREFIX)/signature.8o \
 $(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/dialogs.8o\
 $(PREFIX)/chapter1.8o $(PREFIX)/chapter2.8o $(PREFIX)/chapter3.8o \
 $(PREFIX)/music_eb4.8o \
@@ -78,7 +78,7 @@ assets/* assets/*/* sources/*.8o generate-texture.py
 		cat sources/audio_data.8o >> $@
 		cat $(PREFIX)/tiles.8o >> $@
 #		cat $(PREFIX)/heads.8o >> $@
-		cat $(PREFIX)/dtmf.8o >> $@
+#		cat $(PREFIX)/dtmf.8o >> $@
 #		cat $(PREFIX)/banners.8o >> $@
 		cat $(PREFIX)/audio.8o >> $@
 		cat $(PREFIX)/signature.8o >> $@
