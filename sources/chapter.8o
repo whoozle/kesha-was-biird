@@ -69,3 +69,12 @@
 	i := chapter3_location
 	save v0
 	jump zx_reboot
+
+: glitch_sound
+	v0 := 90
+	loop
+		i := main
+		audio_play_sync
+		v0 += -1
+		if v0 != 0 then
+	again

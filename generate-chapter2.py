@@ -45,8 +45,8 @@ anila.add_action(Action('Kill her', go('katana'), predicate = test('chapter2_got
 katana = Location('ANILA', """Anila started running, fell
 and huddled in a corner
 asking for mercy""", id='katana')
-katana.add_action(Action('Cut her head off', go('glitch1')))
-katana.add_action(Action('Plunge katana into her gut', go('glitch1')))
+katana.add_action(Action('Cut her head off', call('glitch_sound'), go('glitch1')))
+katana.add_action(Action('Plunge katana into her gut', call('glitch_sound'), go('glitch1')))
 
 glitch = Location('GLITCH', "           P A U S I N G\n       S I M U L A T I O N\n\nHello, nice to see you again\nDo you remember me?", id='glitch1')
 glitch.add_action(Action('Yes', go('glitch2')))
