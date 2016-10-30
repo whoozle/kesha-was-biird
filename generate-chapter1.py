@@ -39,6 +39,23 @@ lab_ruins.add_action(Action('Enter dark corridor', go(lab)))
 lab_ruins.add_action(Action('Return to vault', go('vault')))
 lab_ruins.add_action(Action('Rummage through rubbish', banner('tile_chav_data', 'text_chav_greeting'), go(chav), predicate=test('chapter1_got_tongs', 0)))
 
+crater = Location('CRATER', """Crater was perfectly round
+You see ninja's remains covered
+by rotten black robes.
+""")
+crater.add_action(Action("Go back", go('vault')))
+crater.add_action(Action("Stay sadly for a while"))
+crater.add_action(Action("Kick ninja's corpse", go('ninja'), predicate = test('chapter1_got_fish', 0)))
+
+ninja = Location("NINJA'S CORPSE", """Ninja's robes turned to dust as
+professor's shoe touched them.
+There's something underneath it.""", id='ninja')
+ninja.add_action(Action("Examine ninja's remains", go('ninja2')))
+
+ninja2 = Location("NINJA'S CORPSE", """You see dried fish head,
+which looks very familiar""", id='ninja2')
+ninja2.add_action(Action('Pick up dried fish head', set_flag('chapter1_got_fish'), go("crater")))
+
 vault_bed = Location('BED', """Professor lays in bed sleepless
 He keeps thinking on his
 new invention""")
@@ -53,9 +70,9 @@ vault = Location('VAULT', """Vault was warm and cozy,
 almost nothing reminiscents
 recent fishapocalipse.""")
 
-vault.add_action(Action('Go outside', go(lab_ruins)))
 vault.add_action(Action('Stay inside', go(vault_bed)))
-vault.add_action(Action('Go chapter 2', chapter(2)))
+vault.add_action(Action("Go lab's ruins", go(lab_ruins)))
+vault.add_action(Action("Take a walk around crater", go(crater)))
 
 kesha = Location('KESHA MACHINE', """Kesha's head is floating in tank,
 ready for action""", id = 'kesha')
@@ -70,6 +87,6 @@ different way to warn him
 kesha2.add_action(Action('Go city centre', chapter(2)))
 
 generator = Generator()
-generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray, kesha, kesha2)
+generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray, kesha, kesha2, crater, ninja, ninja2)
 
 generator.generate(args.prefix, 'chapter1')

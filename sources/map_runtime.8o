@@ -1,7 +1,7 @@
 :const map_title_x 10
 :const map_title_y 1
 
-:const map_text_x 5
+:const map_text_x 4
 :const map_text_y 10
 
 :const map_action_x 8
