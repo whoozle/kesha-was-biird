@@ -60,7 +60,7 @@ vault_bed = Location('BED', """Professor lays in bed sleepless
 He keeps thinking on his
 new invention""")
 
-vault_bed.add_action(Action('Get out of bed', go('vault')))
+vault_bed.add_action(Action('Get out of the bed', go('vault')))
 vault_bed.add_action(Action('Try to sleep', banner('tile_dream_data', 'text_professors_dream')))
 vault_bed.add_action(Action('Invent time machine', \
 	set_flag('time_machine_invented'), banner('tile_time_machine_data', 'text_time_machine_invented'), \
@@ -73,7 +73,14 @@ recent fishapocalipse.""")
 vault.add_action(Action('Stay inside', go(vault_bed)))
 vault.add_action(Action("Go lab's ruins", go(lab_ruins)))
 vault.add_action(Action("Take a walk around crater", go(crater)))
-vault.add_action(Action("Put fish head into tank", go('kesha')))
+vault.add_action(Action("Work on time machine", go("time_machine"), predicate = test('time_machine_invented', 1)))
+
+tm = Location('Time Machine', """Time machine was almost ready,
+only few pieces are still
+missing.""")
+
+tm.add_action(Action("Return to vault", go(vault)))
+#vault.add_action(Action("Pu", go('kesha')))#, predicate = (test('time_machine_invented', 1), ('chapter1_got_fish'))))
 
 kesha = Location('KESHA MACHINE', """Suddenly professor realised that
 fish head was Kesha's.
@@ -90,6 +97,6 @@ different way to warn him
 kesha2.add_action(Action('Go city centre', chapter(2)))
 
 generator = Generator()
-generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray, kesha, kesha2, crater, ninja, ninja2)
+generator.visit(vault, lab, lab_ruins, vault_bed, chav, f_ray, kesha, kesha2, crater, ninja, ninja2, tm)
 
 generator.generate(args.prefix, 'chapter1')
