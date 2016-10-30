@@ -42,7 +42,8 @@ The conversation flagged.
 anila.add_action(Action('Go outside', go(street)))
 anila.add_action(Action('Kill her', go('katana'), predicate = test('chapter2_got_katana', 1)))
 
-katana = Location('ANILA', """Anila started running, fell\nand huddled in a corner\n
+katana = Location('ANILA', """Anila started running, fell
+and huddled in a corner
 asking for mercy""", id='katana')
 katana.add_action(Action('Cut her head off', go('glitch1')))
 katana.add_action(Action('Plunge katana into her gut', go('glitch1')))
