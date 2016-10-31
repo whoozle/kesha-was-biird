@@ -73,13 +73,14 @@
 	wait_delay
 
 	if v9 != 0 then jump music_play
+
 	music_play_impl
-
-	:breakpoint key
-
 	v2 := random 0x7
-	if v2 >= 6 then
-		v2 += -6
+	if v2 >= 6 begin
+		audio
+		return
+	end
+
 
 	v2 += v2
 	v2 += v2
