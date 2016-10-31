@@ -40,7 +40,7 @@ loc7.add_action(Action('o o O . o O', go('game_q')))
 loc7.add_action(Action('. . o . o O', go('game_q')))
 loc7.add_action(Action('. . o O O o', go('game_q')))
 
-loc8 = Location('GLITCH', "What do you think you're doing now?", id='game_q')
+loc8 = Location('GLITCH', "What do you think you're\ndoing now?", id='game_q')
 loc8.add_action(Action('Nothing!', go('game_a')))
 loc8.add_action(Action('Calling Kesha?', go('game_a')))
 
