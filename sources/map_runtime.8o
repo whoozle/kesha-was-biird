@@ -1,10 +1,10 @@
-:const map_title_x 2
+:const map_title_x 1
 :const map_title_y 1
 
-:const map_text_x 3
+:const map_text_x 2
 :const map_text_y 10
 
-:const map_action_x 6
+:const map_action_x 2
 :const map_action_y1 33
 :const map_action_y2 40
 :const map_action_y3 47
