@@ -83,6 +83,13 @@
 	jump draw_text
 
 : input_action
+	v0 := 0
+	loop
+		if v0 key then jump input_action
+		v0 += 1
+		if v0 != 16 then
+	again
+: input_action_loop
 	v0 := 1
 	if v0 key then jump input_action_ok
 	v0 := 2
@@ -95,7 +102,7 @@
 	if v0 key then jump input_action_c
 
 	music_play
-	jump input_action
+	jump input_action_loop
 
 : input_action_c
 	v0 += -8
