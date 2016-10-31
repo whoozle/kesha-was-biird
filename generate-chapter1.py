@@ -51,13 +51,15 @@ crater.add_action(Action("Reflect on ninja's death"))
 crater.add_action(Action("Kick Ninja's corpse", banner('tile_dead_ninja_data'), go('ninja'), predicate = test('chapter1_got_fish', 0)))
 
 ninja = Location("NINJA'S CORPSE", """Ninja's robes turned to dust as
-professor's passed through his corpse.
-It smells like old books! There's
-something underneath the corpse.""", id='ninja')
+professor's passed through his
+corpse. It smells like old books!
+There's something underneath
+the corpse.""", id='ninja')
 ninja.add_action(Action("Examine ninja's remains", go('ninja2')))
 
-ninja2 = Location("NINJA'S CORPSE", """You see a see a mummified fish head,
-which looks very familiar!""", id='ninja2')
+ninja2 = Location("NINJA'S CORPSE", """You see a see a mummified
+fish head, which looks
+very familiar!""", id='ninja2')
 ninja2.add_action(Action('Pick up dried fish head', set_flag('chapter1_got_fish'), go("crater")))
 
 vault_bed = Location('BED', """The Professor lays in bed,

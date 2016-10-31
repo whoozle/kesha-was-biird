@@ -25,7 +25,7 @@ ninja.add_action(Action('Activate projector', go('projector')))
 ninja.add_action(Action('Take katana from nearest ninja', set_flag('chapter2_got_katana'), predicate = test('chapter2_got_katana', 0)))
 
 projector = Location('NINJA ORIENTEERING FILM', """Surprisingly, the projector worked
-Donning the big screem is
+Donning the big screen is
 an educational film about
 intercepting calls, greeting lovers
 and precisely killing people with
