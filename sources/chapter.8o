@@ -78,3 +78,105 @@
 		v0 += -1
 		if v0 != 0 then
 	again
+
+: play_noise_va
+	loop
+		i := long audio_noise
+		audio_play_sync
+		va += -1
+		if va != 0 then
+	again
+	return
+
+: time_machine_fish
+	vc := 30
+	loop
+		vb := vc
+		vb += -15
+		if vc <= 15 then vb := 1
+
+		i := long tile_time_machine_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		i := long tile_time_machine_fish_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		vc += -1
+		if vc != 0 then
+	again
+
+	return
+
+: time_machine_isotope
+	vc := 30
+	loop
+		vb := vc
+		vb += -15
+		if vc <= 15 then vb := 1
+
+		i := long tile_time_machine_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		i := long tile_time_machine_isotope_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		vc += -1
+		if vc != 0 then
+	again
+
+	return
+
+: time_machine_activated
+	vc := 30
+	loop
+		vb := vc
+		vb += -15
+		if vc <= 15 then vb := 1
+
+		i := long tile_time_machine_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		i := long tile_time_machine_fish_isotope_data
+		draw_fullscreen_tile
+
+		i := long audio_sweep
+		audio_play_sync
+
+		va := vb
+		sleep
+
+		vc += -1
+		if vc != 0 then
+	again
+
+	return

@@ -84,9 +84,9 @@ Frustratingly only a few pieces are
 needed to complete his masterpiece""")
 
 tm.add_action(Action("Return to vault", go(vault)))
-tm.add_action(Action("Place the fish head in the tank", add_flag('chapter1_tm_stage'), set_flag('chapter1_got_fish', 2), predicate = test('chapter1_got_fish', 1)))
-tm.add_action(Action("Screw in the f-ray container", add_flag('chapter1_tm_stage'), set_flag('chapter1_got_isotope', 2), predicate = test('chapter1_got_isotope', 1)))
-tm.add_action(Action("Flip the big red toggle switch!", go('kesha'), predicate = test('chapter1_tm_stage', '>= 2')))
+tm.add_action(Action("Place the fish head in the tank", add_flag('chapter1_tm_stage'), set_flag('chapter1_got_fish', 2), call('time_machine_fish'), predicate = test('chapter1_got_fish', 1)))
+tm.add_action(Action("Screw in the f-ray container", add_flag('chapter1_tm_stage'), set_flag('chapter1_got_isotope', 2), call('time_machine_isotope'), predicate = test('chapter1_got_isotope', 1)))
+tm.add_action(Action("Flip the big red toggle switch!", go('kesha'), call('time_machine_activated'), predicate = test('chapter1_tm_stage', '>= 2')))
 
 kesha = Location('KESHA MACHINE', """Suddenly the professor began to
 recognise the mummified fish
