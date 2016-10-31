@@ -67,7 +67,7 @@ fixated on his new invention""")
 vault_bed.add_action(Action('Get out of the bed', go('vault')))
 vault_bed.add_action(Action('Try to sleep', banner('tile_dream_data', 'text_professors_dream')))
 vault_bed.add_action(Action('Begin inventing', \
-	set_flag('chapter1_time_machine_invented'), banner('tile_time_machine_data', 'text_time_machine_invented'), \
+	set_flag('chapter1_time_machine_invented'), banner('tile_time_machine_banner_data', 'text_time_machine_invented'), \
 	predicate=test('chapter1_time_machine_invented', 0)))
 
 vault = Location('VAULT', """The Vault was warm and cozy,

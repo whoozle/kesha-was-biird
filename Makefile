@@ -20,6 +20,7 @@ $(PREFIX)/tiles.8o: Makefile ./generate-texture.py assets/tiles/* #assets/*.png
 		./generate-texture.py assets/tiles/heads/professor.png professor 2 16 >> $@
 		./generate-texture.py assets/tiles/heads/fish.png fish 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_empty.png time_machine 2 16 >> $@
+		./generate-texture.py assets/tiles/tm_empty_banner.png time_machine_banner 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_w_fish.png time_machine_fish 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_w_nuke.png time_machine_isotope 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_w_nuke_and_fish.png time_machine_fish_isotope 2 16 >> $@
