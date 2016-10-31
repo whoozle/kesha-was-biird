@@ -62,6 +62,20 @@
 	draw_text_ns
 
 	va := intertitle_delay
+	music_play_sync_va
+
+	if vd == 0 begin
+		i := long tile_chapter1_data
+	end
+	if vd == 1 begin
+		i := long tile_chapter2_data
+	end
+	if vd == 2 begin
+		i := long tile_chapter3_data
+	end
+
+	draw_fullscreen_tile
+	va := intertitle_delay
 	jump music_play_sync_va
 
 : chapter3_restart
