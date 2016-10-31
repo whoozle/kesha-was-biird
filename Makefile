@@ -45,7 +45,7 @@ $(PREFIX)/chapter3.8o $(PREFIX)/chapter3.json: Makefile generate-chapter3.py pyk
 $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json $(PREFIX)/dialogs.json \
 $(PREFIX)/chapter1.json $(PREFIX)/chapter2.json $(PREFIX)/chapter3.json \
 generate-text.py
-		./generate-text.py $(PREFIX) 1800 assets/en.json \
+		./generate-text.py $(PREFIX) 1600 assets/en.json \
 		$(PREFIX)/chapter1.json $(PREFIX)/chapter2.json $(PREFIX)/chapter3.json $(PREFIX)/dialogs.json
 
 $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
