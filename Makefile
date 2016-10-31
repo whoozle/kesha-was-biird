@@ -33,7 +33,7 @@ $(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py pykesh
 		./generate-dialogs.py $(PREFIX)
 
 $(PREFIX)/font.8o $(PREFIX)/font-data.8o: Makefile generate-font.py assets/font/5.font
-		./generate-font.py assets/font/5.font font 1500 $(PREFIX)
+		./generate-font.py assets/font/5.font font 1100 $(PREFIX)
 
 $(PREFIX)/chapter1.8o $(PREFIX)/chapter1.json: Makefile generate-chapter1.py pykesha/map.py
 		./generate-chapter1.py $(PREFIX)
