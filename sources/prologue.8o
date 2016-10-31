@@ -29,9 +29,12 @@
 			loop
 				wait_delay
 				music_play
-				va += -1
+				v0 := 1
+				va -= v0
+				if v0 key then jump prologue_skip_delay
 				if va != 0 then
 			again
+			: prologue_skip_delay
 
 			v9 += -1
 			if v9 != 0 then
