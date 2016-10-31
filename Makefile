@@ -16,10 +16,14 @@ $(PREFIX)/tiles.8o: Makefile ./generate-texture.py assets/tiles/* #assets/*.png
 		./generate-texture.py assets/tiles/room.png room 2 16 >> $@
 		./generate-texture.py assets/tiles/dream.png dream 2 16 >> $@
 		./generate-texture.py assets/tiles/chav.png chav 2 16 >> $@
-		./generate-texture.py assets/tiles/time-machine.png time_machine 2 16 >> $@
 		./generate-texture.py assets/tiles/galina-on-balcony.png galina 2 16 >> $@
 		./generate-texture.py assets/tiles/heads/professor.png professor 2 16 >> $@
 		./generate-texture.py assets/tiles/heads/fish.png fish 2 16 >> $@
+		./generate-texture.py assets/tiles/tm_empty.png time_machine 2 16 >> $@
+		./generate-texture.py assets/tiles/tm_w_fish.png time_machine_fish 2 16 >> $@
+		./generate-texture.py assets/tiles/tm_w_nuke.png time_machine_isotope 2 16 >> $@
+		./generate-texture.py assets/tiles/tm_w_nuke_and_fish.png time_machine_fish_isotope 2 16 >> $@
+
 
 $(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py pykesha/dialogs.py
 		./generate-dialogs.py $(PREFIX)
