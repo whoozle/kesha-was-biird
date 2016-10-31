@@ -49,7 +49,7 @@ $(PREFIX)/signature.8o: Makefile ./generate-string.py
 game.8o: Makefile $(PREFIX)/texts.8o \
 $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o \
 $(PREFIX)/audio.8o $(PREFIX)/signature.8o \
-$(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/dialogs.8o\
+$(PREFIX)/tiles.8o sources/map_runtime.8o $(PREFIX)/dialogs.8o \
 $(PREFIX)/chapter1.8o $(PREFIX)/chapter2.8o $(PREFIX)/chapter3.8o \
 $(PREFIX)/music_eb4.8o \
 assets/* assets/*/* sources/*.8o generate-texture.py
