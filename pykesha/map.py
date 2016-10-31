@@ -115,7 +115,6 @@ class Generator(object):
 			src.append(': %s_action_%d' %(loc_prefix, idx))
 
 			def call(func):
-				print func, call.last_action
 				if call.last_action:
 					call.return_needed = False
 					return "jump " + func
