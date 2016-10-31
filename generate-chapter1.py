@@ -99,7 +99,8 @@ kesha.add_action(Action('Call professor-from-the-past', call('dialog_kesha_1'), 
 kesha2 = Location('KESHA MACHINE', """I tried to warn the professor from
 the past, but nothing happened...
 It looks that we'll have to try
-something else. We need to warn him!
+something else.
+We need to warn him!
 """, id = 'kesha2')
 kesha2.add_action(Action('Go to city centre', chapter(2)))
 
