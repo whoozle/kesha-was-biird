@@ -1,4 +1,4 @@
-: music_play_impl
+: music_play
 	v0 := delay
 	if v0 != 0 then
 		return
@@ -36,14 +36,11 @@
 : current_music_pos
 	0 0
 
+	audio
+
 	delay := v3
 	buzzer := v3
 
-	return
-
-: music_play
-	music_play_impl
-	audio
 	return
 
 : music_play_sync
@@ -59,10 +56,25 @@
 	again
 	return
 
+: ec4_tick
+ 0
+
 : ec4_play
-	v2 := random 0xf
-	if v2 > 5 then
-		jump ec4_play_exit
+	i := ec4_tick
+	load v9 - v9
+	v9 += 1
+	if v9 == 7 then v9 := 0
+	i := ec4_tick
+	save v9 - v9
+
+	wait_delay
+
+	if v9 != 0 then jump music_play
+	:breakpoint key
+
+	v2 := random 0x7
+	if v2 >= 6 then
+		v2 += -6
 
 	v2 += v2
 	v2 += v2
@@ -77,10 +89,9 @@
 	0 0
 	i += v2
 
-: ec4_play_exit
+	vf := 2
+
 	audio
-	loop
-		v0 := delay
-		if v0 != 0 then
-	again
-	return
+	buzzer := vf
+	delay := vf
+	jump wait_delay
