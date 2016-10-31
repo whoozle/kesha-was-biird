@@ -1,4 +1,4 @@
-: music_play
+: music_play_impl
 	v0 := delay
 	if v0 != 0 then
 		return
@@ -36,11 +36,14 @@
 : current_music_pos
 	0 0
 
-	audio
-
 	delay := v3
 	buzzer := v3
 
+	return
+
+: music_play
+	music_play_impl
+	audio
 	return
 
 : music_play_sync
@@ -70,6 +73,8 @@
 	wait_delay
 
 	if v9 != 0 then jump music_play
+	music_play_impl
+
 	:breakpoint key
 
 	v2 := random 0x7
