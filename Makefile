@@ -45,14 +45,14 @@ $(PREFIX)/chapter3.8o $(PREFIX)/chapter3.json: Makefile generate-chapter3.py pyk
 $(PREFIX)/texts.8o $(PREFIX)/texts_data.8o: Makefile assets/en.json $(PREFIX)/dialogs.json \
 $(PREFIX)/chapter1.json $(PREFIX)/chapter2.json $(PREFIX)/chapter3.json \
 generate-text.py
-		./generate-text.py $(PREFIX) 1a00 assets/en.json \
+		./generate-text.py $(PREFIX) 1800 assets/en.json \
 		$(PREFIX)/chapter1.json $(PREFIX)/chapter2.json $(PREFIX)/chapter3.json $(PREFIX)/dialogs.json
 
 $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
 		./generate-audio.py assets/sounds/kesha.wav a000 music -c 0.25 -l4 -o $(PREFIX)/audio.wav > $@
 
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
-		./generate-string.py --right-align=65000 "BROUGHT TO YOU BY GAZAY & WHOOZLE. FROM LOVE WITH COW AND THANKS FOR THE FISH. FISH. YOU GOT IT?? GOT IT??? FISH!!! AHAHAHAHAHAHA ©7524" > $@
+		./generate-string.py --right-align=65000 "BROUGHT TO YOU BY WHOOZLE, GAZAY & FOGGY. FROM LOVE WITH COW AND THANKS FOR THE FISH. FISH. YOU GOT IT?? GOT IT??? FISH!!! AHAHAHAHAHAHA ©7524" > $@
 
 game.8o: Makefile $(PREFIX)/texts.8o \
 $(PREFIX)/texts_data.8o $(PREFIX)/font.8o $(PREFIX)/dialogs.8o \
