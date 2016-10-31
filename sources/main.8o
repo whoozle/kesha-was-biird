@@ -3,7 +3,7 @@
 	hires
 	plane 3
 
-	jump main_skip
+#	jump main_skip
 
 	secret_ending
 	splash_draw
