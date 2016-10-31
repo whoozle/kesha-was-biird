@@ -48,7 +48,7 @@ by disintegrating black robes.
 """)
 crater.add_action(Action("Go back", go('vault')))
 crater.add_action(Action("Reflect on ninja's death"))
-crater.add_action(Action("Kick Ninja's corpse", go('ninja'), predicate = test('chapter1_got_fish', 0)))
+crater.add_action(Action("Kick Ninja's corpse", banner('tile_dead_ninja_data'), go('ninja'), predicate = test('chapter1_got_fish', 0)))
 
 ninja = Location("NINJA'S CORPSE", """Ninja's robes turned to dust as
 professor's passed through his corpse.

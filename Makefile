@@ -23,6 +23,7 @@ $(PREFIX)/tiles.8o: Makefile ./generate-texture.py assets/tiles/* #assets/*.png
 		./generate-texture.py assets/tiles/tm_w_fish.png time_machine_fish 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_w_nuke.png time_machine_isotope 2 16 >> $@
 		./generate-texture.py assets/tiles/tm_w_nuke_and_fish.png time_machine_fish_isotope 2 16 >> $@
+		./generate-texture.py assets/tiles/dead_ninja.png dead_ninja 2 16 >> $@
 
 
 $(PREFIX)/dialogs.8o $(PREFIX)/dialogs.json: Makefile generate-dialogs.py pykesha/dialogs.py
