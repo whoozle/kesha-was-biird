@@ -23,14 +23,17 @@ def label(name):
 nx = (w + tw - 1) / tw
 ny = (h + th - 1) / th
 
+palette_hack = { 0: 3, 3: 0, 1: 1, 2: 2}
+
 def get_pixel(x, y, plane):
 	if x < 0 or x >= w:
 		return 0
 	if y < 0 or y >= h:
 		return 0
 
+	value = palette_hack[pixels[y * w + x]]
 	bit = 1 << plane
-	return 1 if pixels[y * w + x] & bit else 0
+	return 1 if value & bit else 0
 
 print label("data"),
 for ty in xrange(0, ny):
