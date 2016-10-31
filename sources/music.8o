@@ -10,13 +10,13 @@
 
 	0xf0 0x00 #i := long XXXX
 : current_music_index_pos
-	0xa0 0x00 #audio_music_hi, audio_music_lo does not work here
+	0xa1 0x00 #audio_music_hi, audio_music_lo does not work here
 
 	load v4 - v5
 
 	if v4 == 0xff begin
 		i := current_music_index_pos
-		v0 := 0xa0 #audio_music_hi, audio_music_lo does not work here
+		v0 := 0xa1 #audio_music_hi, audio_music_lo does not work here
 		v1 := 0
 		save v0 - v1
 		i := long audio_music_index
