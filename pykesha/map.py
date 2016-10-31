@@ -156,7 +156,10 @@ class Generator(object):
 					src.append('i := %s' %flag)
 					src.append('save v0')
 				elif action.name == 'banner':
-					tile, text = action.args
+					if len(action.args) == 1:
+						tile, text = action.args[0], '0'
+					else:
+						tile, text = action.args
 					src.append('i := long %s' %tile)
 					src.append('vc := %s' %text)
 					src.append(call('display_banner'))
