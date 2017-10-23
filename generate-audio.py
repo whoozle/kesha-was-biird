@@ -95,6 +95,7 @@ if size % 16:
 def compress(data):
 	print("uncompressed data: %u bytes" %len(data), file=sys.stderr)
 	pack, bitpack, index = [], [], []
+	silence_index = -1
 
 	def bitcount(value):
 		return bin(value).count('1')
@@ -106,6 +107,10 @@ def compress(data):
 		return value
 
 	def difference(v1, v2):
+		if v1 == 0:
+			return bitcount(v2)
+		if v2 == 0:
+			return bitcount(v1)
 		r = bitcount(v1 ^ v2)
 		if r == 0:
 			return r
@@ -119,12 +124,15 @@ def compress(data):
 		return r
 
 	def indexOf(next):
+		if next == 0:
+			return silence_index
+
 		mindiff, minindex = 128, -1
 		for i, seq in enumerate(bitpack):
 			diff = difference(seq, next)
 			if diff < mindiff:
 				mindiff, minindex = diff, i
-		#print('indexOf(%d) -> %d with diff %d' %(next, minindex, mindiff), file=sys.stderr)
+		#print('indexOf(%d) -> %d (%d) with %d different bits' %(next, minindex, bitpack[minindex] if minindex > 0 else -1, mindiff), file=sys.stderr)
 		return minindex if mindiff <= level else -1
 
 	last_progress = 0
@@ -138,6 +146,8 @@ def compress(data):
 			src = len(pack)
 			pack += next
 			bitpack.append(bits)
+			if bits == 0:
+				silence_index = src
 		index.append(src)
 		progress = 100 * offset / len(data)
 		if last_progress != progress:
