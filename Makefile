@@ -50,7 +50,7 @@ generate-text.py
 		$(PREFIX)/chapter1.json $(PREFIX)/chapter2.json $(PREFIX)/chapter3.json $(PREFIX)/dialogs.json
 
 $(PREFIX)/audio.8o: Makefile ./generate-audio.py assets/sounds/*
-		./generate-audio.py assets/sounds/kesha.wav a100 music -c 0.25 -l10 -o $(PREFIX)/audio.wav > $@
+		./generate-audio.py assets/sounds/kesha.wav a100 music -c 0.25 -l8 -o $(PREFIX)/audio.wav > $@
 
 $(PREFIX)/signature.8o: Makefile ./generate-string.py
 		./generate-string.py --right-align=65000 "BROUGHT TO YOU BY WHOOZLE, GAZAY & FOGGY. FROM LOVE WITH COW AND THANKS FOR ALL THE FISH. FISH! FISH! YOU GOT IT?? GOT IT??? FISH!!! AHAHAHAHAHAHA ©7524" > $@
