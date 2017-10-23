@@ -109,7 +109,7 @@ def compress(data):
 		r = bitcount(v1 ^ v2)
 		if r == 0:
 			return r
-		for s in xrange(1, min(8, level)):
+		for s in xrange(1, min(8, 1 + level)):
 			r = min(r, s + bitcount(v1 ^ (v2 << s)))
 			if r == 0:
 				return r
