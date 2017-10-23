@@ -102,8 +102,9 @@ def compress(data):
 
 	def read(next):
 		value = 0L
+		n = len(next) - 1
 		for idx, byte in enumerate(next):
-			value |= byte << (8 * idx)
+			value |= byte << (8 * (n - idx))
 		return value
 
 	def difference(v1, v2):
