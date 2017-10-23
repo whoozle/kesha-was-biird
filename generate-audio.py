@@ -107,9 +107,15 @@ def compress(data):
 
 	def difference(v1, v2):
 		r = bitcount(v1 ^ v2)
+		if r == 0:
+			return r
 		for s in xrange(1, min(8, level)):
 			r = min(r, s + bitcount(v1 ^ (v2 << s)))
+			if r == 0:
+				return r
 			r = min(r, s + bitcount((v1 << s) ^ v2))
+			if r == 0:
+				return r
 		return r
 
 	def indexOf(next):
