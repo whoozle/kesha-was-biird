@@ -133,7 +133,7 @@ def compress(data):
 			diff = difference(seq, next)
 			if diff < mindiff:
 				mindiff, minindex = diff, i
-		print('indexOf:\n\t%s -> %d\n\t%s with %d different bits\n' %(format(next, 'b').zfill(128), minindex, format(bitpack[minindex], 'b').zfill(128) if minindex > 0 else '-', mindiff), file=sys.stderr)
+		#print('indexOf:\n\t%s -> %d\n\t%s with %d different bits\n' %(format(next, 'b').zfill(128), minindex, format(bitpack[minindex], 'b').zfill(128) if minindex > 0 else '-', mindiff), file=sys.stderr)
 		return minindex if mindiff <= level else -1
 
 	last_progress = 0
