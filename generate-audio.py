@@ -121,6 +121,8 @@ def compress(data):
 		#print('indexOf(%d) -> %d with diff %d' %(next, minindex, mindiff), file=sys.stderr)
 		return minindex if mindiff <= level else -1
 
+	last_progress = 0
+	total = 0
 	for offset in xrange(0, len(data), 16):
 		#print('offset %d, bitpack %d' %(offset, len(bitpack)), file=sys.stderr)
 		next = data[offset:offset + 16]
@@ -131,8 +133,12 @@ def compress(data):
 			pack += next
 			bitpack.append(bits)
 		index.append(src)
+		progress = 100 * offset / len(data)
+		if last_progress != progress:
+			last_progress = progress
+			total = len(pack) + len(index) * 2
+			print("encoding progress: %02d%% %d/%d" %(progress, total, len(data)), file=sys.stderr)
 
-	total = len(pack) + len(index) * 2
 	print("compressed data: %u + %u = %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, total, args.level, 100.0 * total / len(data)), file=sys.stderr)
 	return pack, index
 
