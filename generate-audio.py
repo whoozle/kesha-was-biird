@@ -94,38 +94,42 @@ if size % 16:
 
 def compress(data):
 	print("uncompressed data: %u bytes" %len(data), file=sys.stderr)
-	pack, index = [], []
+	pack, bitpack, index = [], [], []
 
-	def compare(pack, next, pos, n):
-		bits = 0
-		for i in xrange(1, n):
-			if pack[pos + i] != next[i]:
-				bits += bin(pack[pos + i] ^ next[i]).count('1')
-				if bits > args.level:
-					return False
-		return True
+	def bitcount(value):
+		return bin(value).count('1')
+
+	def read(next):
+		value = 0L
+		for idx, byte in enumerate(next):
+			value |= byte << (8 * idx)
+		return value
+
+	def difference(v1, v2):
+		r = bitcount(v1 ^ v2)
+		for s in xrange(1, min(8, level)):
+			r = min(r, s + bitcount(v1 ^ (v2 << s)))
+			r = min(r, s + bitcount((v1 << s) ^ v2))
+		return r
 
 	def indexOf(next):
-		first = next[0]
-		n = len(next)
-		try:
-			pos = 0
-			while True:
-				pos = pack.index(first, pos, len(pack) - n)
-				if compare(pack, next, pos, n):
-					return pos
-				else:
-					pos += 1
-
-		except ValueError:
-			return -1
+		mindiff, minindex = 128, -1
+		for i, seq in enumerate(bitpack):
+			diff = difference(seq, next)
+			if diff < mindiff:
+				mindiff, minindex = diff, i
+		#print('indexOf(%d) -> %d with diff %d' %(next, minindex, mindiff), file=sys.stderr)
+		return minindex if mindiff <= level else -1
 
 	for offset in xrange(0, len(data), 16):
+		#print('offset %d, bitpack %d' %(offset, len(bitpack)), file=sys.stderr)
 		next = data[offset:offset + 16]
-		src = indexOf(next)
+		bits = read(next)
+		src = indexOf(bits)
 		if src < 0:
 			src = len(pack)
 			pack += next
+			bitpack.append(bits)
 		index.append(src)
 
 	total = len(pack) + len(index) * 2
