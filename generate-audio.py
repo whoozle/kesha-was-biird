@@ -143,7 +143,7 @@ def compress(data):
 		if last_progress != progress:
 			last_progress = progress
 			total = len(pack) + len(index) * 2
-			print("encoding progress: %02d%% %d/%d" %(progress, total, len(data)), file=sys.stderr)
+			print("encoding progress: %2d%% %d/%d" %(progress, total, len(data)), file=sys.stderr)
 
 	print("compressed data: %u + %u = %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, total, args.level, 100.0 * total / len(data)), file=sys.stderr)
 	return pack, index
