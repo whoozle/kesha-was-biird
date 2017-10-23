@@ -155,6 +155,7 @@ def compress(data):
 			total = len(pack) + len(index) * 2
 			print("encoding progress: %2d%% %d/%d" %(progress, total, len(data)), file=sys.stderr)
 
+	total = len(pack) + len(index) * 2
 	print("compressed data: %u + %u = %u bytes, level: %u, ratio: %.1f%%" %(len(pack), len(index) * 2, total, args.level, 100.0 * total / len(data)), file=sys.stderr)
 	return pack, index
 
